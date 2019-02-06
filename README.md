@@ -1,2 +1,2 @@
-# OfferteGenerator
+# InvoiceGenerator
 Program to make quotations
