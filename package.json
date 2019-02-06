@@ -4,19 +4,40 @@
   "description": "A program to generate invoices from a template",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "build --dir",
+    "dist": "build",
+    "pack-win": "build --dir --win",
+    "dist-win": "build --win"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maikka39/InvoiceGenerator.git"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "Maik de Kruif",
+  "license": "GNU General Public License v3.0",
   "bugs": {
     "url": "https://github.com/maikka39/InvoiceGenerator/issues"
   },
   "homepage": "https://github.com/maikka39/InvoiceGenerator#readme",
   "devDependencies": {
-    "electron": "^3.0.0"
+    "electron": "^3.0.0",
+    "electron-builder": "^20.38.0"
+  },
+  "build": {
+    "appId": "tk.maikka39.invoicegenerater",
+    "productName": "InvoiceGenerator",
+    "copyright": "Copyright © 2018 Maik de Kruif",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist",
+      "app": "./"
+    },
+    "win": {
+      "target": [
+        "zip"
+      ]
+    }
   }
 }
