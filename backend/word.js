@@ -1,3 +1,5 @@
+// Library docs:
+// https://docxtemplater.readthedocs.io/en/latest/index.html
 var JSZip = require('jszip');
 var Docxtemplater = require('docxtemplater');
 
