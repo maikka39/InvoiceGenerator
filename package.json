@@ -16,7 +16,7 @@
     "url": "git+https://github.com/maikka39/InvoiceGenerator.git"
   },
   "author": "Maik de Kruif",
-  "license": "GNU General Public License v3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/maikka39/InvoiceGenerator/issues"
   },
@@ -39,5 +39,9 @@
         "zip"
       ]
     }
+  },
+  "dependencies": {
+    "docxtemplater": "^3.9.7",
+    "jszip": "^2.6.1"
   }
 }
