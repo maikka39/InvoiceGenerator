@@ -3,6 +3,16 @@
     cursor: text;
 }
 
+.container-content p {
+    font-size: 1.3vw;
+}
+.container-content h1 {
+    font-size: 3vw;
+}
+.container-content button {
+    font-size: 1vw;
+}
+
 .container-content {
     user-select: none;
     margin: auto 0;
@@ -11,7 +21,7 @@
 .container button {
     margin: 0 auto;
     background: white;
-    border: blueviolet 2px solid;
+    border: blueviolet .2vw solid;
     border-radius: 2vw;
     padding: .5vw 2vw;
     margin-top: 1vw;
