@@ -1,0 +1,35 @@
+* {
+    font-family: 'Overpass', sans-serif;
+    color: #222;
+}
+
+TODO: Important check body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+    text-align: center;
+    background: blueviolet;
+    color: black;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    top: 10%;
+    width: 80vw;
+    height: 60vh;
+    padding: 10vh;
+    background-color: white;
+    border-radius: .8vw;
+    box-shadow: 0px 0px 0vw 1.2vw #a056e5;
+    text-align: left;
+    display: flex;
+}

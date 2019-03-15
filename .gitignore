@@ -21,3 +21,5 @@ package-lock.json
 yarn.lock
 
 *.old
+backend/example.docx
+backend/output.docx

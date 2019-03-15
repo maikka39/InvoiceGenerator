@@ -1,0 +1,34 @@
+.container-content p,
+.container-content h1 {
+    cursor: text;
+}
+
+.container-content {
+    user-select: none;
+    margin: auto 0;
+}
+
+.container button {
+    margin: 0 auto;
+    background: white;
+    border: blueviolet 2px solid;
+    border-radius: 2vw;
+    padding: .5vw 2vw;
+    margin-top: 1vw;
+    transition: 0.2s;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Overpass',
+        sans-serif;
+}
+
+.container button.edit {
+    margin-left: 2vw;
+}
+
+.container button:hover {
+    background-color: blueviolet;
+    color: white;
+}
+
+/* Dark Mode */

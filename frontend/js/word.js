@@ -2,6 +2,6 @@ const {
   remote
 } = require('electron');
 
-const word = remote.require('./backend/word');
+const test = remote.require('./backend/test');
 
-word.test()
+test.test()
