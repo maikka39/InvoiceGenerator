@@ -1,34 +1,39 @@
 .container-content p,
 .container-content h1 {
-    cursor: text;
+  cursor: text;
 }
 
 .container-content {
-    user-select: none;
-    margin: auto 0;
+  user-select: none;
+  margin: auto 0;
 }
 
-.container button {
-    margin: 0 auto;
-    background: white;
-    border: blueviolet 2px solid;
-    border-radius: 2vw;
-    padding: .5vw 2vw;
-    margin-top: 1vw;
-    transition: 0.2s;
-    outline: none;
-    cursor: pointer;
-    font-family: 'Overpass',
-        sans-serif;
+.container a {
+  margin: 0 auto;
+  background: white;
+  border: blueviolet 2px solid;
+  border-radius: 2vw;
+  padding: .5vw 2vw;
+  margin-top: 1vw;
+  transition: 0.2s;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Overpass',
+    sans-serif;
+  text-decoration: none;
 }
 
-.container button.edit {
-    margin-left: 2vw;
+.container a.edit {
+  margin-left: 2vw;
+  border-color: grey !important;
+  color: grey !important;
+  background-color: #ffffff !important;
+  cursor: default;
 }
 
-.container button:hover {
-    background-color: blueviolet;
-    color: white;
+.container a:hover {
+  background-color: blueviolet;
+  color: white;
 }
 
 /* Dark Mode */
