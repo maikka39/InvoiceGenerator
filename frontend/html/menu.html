@@ -16,19 +16,19 @@
             <div class="container-content">
                     <h1>Choose your template</h1>
                 <div class="card-wrapper">
-                    <button class="card">
+                    <button onclick="selectTemplate(this)" name="eleganza" class="card">
                         <div class="card-content">
                             <img src="../img/template.png" alt="templateexample">
                             <p class="title">Eleganza</p>
                         </div>
                     </button>
-                    <button class="card">
+                    <button onclick="selectTemplate(this)" name="eleganza" class="card">
                         <div class="card-content">
                             <img src="../img/template.png" alt="templateexample">
                             <p class="title">Eleganza</p>
                         </div>
                     </button>
-                    <button class="card">
+                    <button onclick="selectTemplate(this)" name="eleganza" class="card">
                         <div class="card-content">
                             <img src="../img/template.png" alt="templateexample">
                             <p class="title">Eleganza</p>
@@ -38,6 +38,19 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+      const {
+        remote
+      } = require('electron');
+
+      const values = remote.require('./backend/values');
+
+      function selectTemplate(el) {
+        values.set("offerte_type", el.name);
+        window.location.href = "next.html";
+      };
+    </script>
 </body>
 
 </html>
