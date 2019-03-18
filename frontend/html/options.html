@@ -2,61 +2,80 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OfferteGenerator Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/master.css">
-    <link rel="stylesheet" href="../css/options.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>OfferteGenerator Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/master.css">
+  <link rel="stylesheet" href="../css/options.css">
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <div class="container-content">
-                <div class="customer">
-                    <h1>Customer</h1>
-                    <div class="getcontent"><button>Get Customer</button></div>
-                    <div class="addcontent">
-                        <form action="">
-                            <input placeholder="" type="text">
-                            <input placeholder="" type="text">
-                            <input placeholder="" type="text">
-                            <input placeholder="" type="text">
-                            <input placeholder="" type="text">
-                        </form>
-                    </div>
-                </div>
-                <div class="product">
-                    <h1>Products</h1>
-                    <div class="item">
-                        <div class="item-content">
-                            <div class="color"></div>
-                            <div class="item-text">
-                                <h5>Product 1</h5>
-                                <p>About product 1</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-content">
-                            <div class="color"></div>
-                            <div class="item-text">
-                                <h5>Product 2</h5>
-                                <p>About product 2</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-content">
-                            <div class="color"></div>
-                            <div class="item-text">
-                                <h5>Product 3</h5>
-                                <p>About product 3</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="wrapper">
+    <div class="container">
+      <div class="container-content">
+        <div class="container-part customer">
+          <h1>Customer</h1>
+          <div class="getcontent">
+            <select>
+              <option value="000">Company</option>
+              <option value="001">placeholder</option>
+              <option value="002">placeholder</option>
+              <option value="003">placeholder</option>
+              <option value="004">placeholder</option>
+              <option value="005">placeholder</option>
+            </select>
+          </div>
+          <h3>or</h3>
+          <div class="addcontent">
+            <form name="user" action="">
+              <p>sample</p>
+              <input type="text"><br>
+              <p>sample</p>
+              <input type="text"><br>
+              <p>sample</p>
+              <input type="text"><br>
+              <p>sample</p>
+              <input type="email"><br>
+              <button type="submit">Add</button>
+            </form>
+          </div>
         </div>
+        <div class="container-part product">
+          <h1>Products</h1>
+          <div class="content">
+            <div class="line">
+              <div class="product">
+                <div class="color" onclick="this.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);"></div>
+              </div>
+              <div class="amount"><input type="text"></div>
+            </div>
+            <div class="line">
+              <div class="product">
+                <div class="color" onclick="this.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);"></div>
+              </div>
+              <div class="amount"><input type="text"></div>
+            </div>
+            <div class="line">
+              <div class="product">
+                <div class="color" onclick="this.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);"></div>
+              </div>
+              <div class="amount"><input type="text"></div>
+            </div>
+            <div class="line">
+              <div class="product">
+                <div class="color" onclick="this.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);"></div>
+              </div>
+              <div class="amount"><input type="text"></div>
+            </div>
+            <div class="line">
+              <div class="product">
+                <div class="color" onclick="this.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);"></div>
+              </div>
+              <div class="amount"><input type="text"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
