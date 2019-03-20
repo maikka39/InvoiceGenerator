@@ -28,15 +28,15 @@
           </div>
           <h3>or</h3>
           <div class="addcontent">
-            <form name="user" action="">
-              <p>sample</p>
-              <input type="text"><br>
-              <p>sample</p>
-              <input type="text"><br>
-              <p>sample</p>
-              <input type="text"><br>
-              <p>sample</p>
-              <input type="email"><br>
+            <form onsubmit="return submitForm(this);">
+              <span>Bedrijf</span>
+              <input type="text" name="bedrijf"><br>
+              <span>Naam</span>
+              <input type="text" name="naam"><br>
+              <span>Iets_anders</span>
+              <input type="text" name="iets_anders"><br>
+              <span>E-Mail</span>
+              <input type="email" name="email"><br>
               <button type="submit">Add</button>
             </form>
           </div>
@@ -79,3 +79,25 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    const {
+      remote
+    } = require('electron');
+
+    const values = remote.require('./backend/values');
+
+    function submitForm(el) {
+      for (var i = 0; i < el.children.length; i++) {
+        if (el.children[i].tagName.toLowerCase() === "input") {
+          values.set(el.children[i].name, el.children[i].value);
+        }
+      };
+      values.log();
+      // window.location.href = "next.html";
+
+      // Prevent form submission
+      return false;
+    };
+  </script>
+</body>
+</html>
