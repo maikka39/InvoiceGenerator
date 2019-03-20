@@ -40,14 +40,18 @@
     </div>
 
     <script type="text/javascript">
+      // Connect to the backend
       const {
         remote
       } = require('electron');
 
+      // Load the values script
       const values = remote.require('./backend/values');
 
       function selectTemplate(el) {
+        // Set the value "offerte_type"
         values.set("offerte_type", el.name);
+        // Go to the next page
         window.location.href = "options.html";
       };
     </script>

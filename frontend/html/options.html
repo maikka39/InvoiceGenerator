@@ -80,22 +80,29 @@
     </div>
   </div>
   <script type="text/javascript">
+    // Connect to the backend
     const {
       remote
     } = require('electron');
 
+    // Load the values script
     const values = remote.require('./backend/values');
 
     function submitForm(el) {
+      // Iterate through all the children of the form
       for (var i = 0; i < el.children.length; i++) {
+        // If the child is of the type "input"
         if (el.children[i].tagName.toLowerCase() === "input") {
+          // Set the value in the backend
           values.set(el.children[i].name, el.children[i].value);
         }
       };
+      // Log all currently set values
       values.log();
-      // window.location.href = "next.html";
+      // Go to the next page
+      //window.location.href = "next.html";
 
-      // Prevent form submission
+      // Prevent the form from submitting
       return false;
     };
   </script>

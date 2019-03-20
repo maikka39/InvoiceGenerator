@@ -1,24 +1,28 @@
 // Library docs:
 // https://docxtemplater.readthedocs.io/en/latest/index.html
-var JSZip = require('jszip');
-var Docxtemplater = require('docxtemplater');
 
-var fs = require('fs');
-var path = require('path');
+// Import the used libraries
+const JSZip = require('jszip');
+const Docxtemplater = require('docxtemplater');
+const fs = require('fs');
+const path = require('path');
 
+// Enter the path of the template
 let file_path = "example.docx"
 
-//Load the docx file as a binary
+//Load the template file as binary
 var content = fs.readFileSync(path.resolve(__dirname, file_path), 'binary');
 
-// Convert file to zip
+// Load the binary as a zip file
 var zip = new JSZip(content);
 
-// Load the zip in the library
+// Create a new document
 var doc = new Docxtemplater();
+
+// Load the zip in the library
 doc.loadZip(zip);
 
-// Set the templateVariables
+// Set the values which should be replaced in the template
 doc.setData({
   klant_bedrijf: 'Blend4',
   project_naam: '20184848 Plafond Lounge Roosendaal',
@@ -51,20 +55,24 @@ doc.setData({
   totaal_prijs: '€6913,-',
 });
 
+// Try is to prevent the program from closing is the rendering process fails
 try {
   // Render the document (replace all occurences of {var} by var_value)
   doc.render()
 } catch (error) {
+  // If there is an error,
+  // Get the values
   var e = {
     message: error.message,
     name: error.name,
     stack: error.stack,
     properties: error.properties,
   }
+  // And log them as JSON
   console.log(JSON.stringify({
     error: e
   }));
-  // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
+  // Then throw an error which contains additional information (it contains a property object).
   throw error;
 }
 
@@ -74,5 +82,5 @@ var buf = doc.getZip()
     type: 'nodebuffer'
   });
 
-// Write the file to the file system
+// Write the file to the computer
 fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
