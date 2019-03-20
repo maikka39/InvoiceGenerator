@@ -42,11 +42,19 @@ values["offerte_datum"] = values["current_weekday_string"] + ' ' + values["curre
 
 // Everything in here can be used by other scripts
 module.exports = {
+  /**
+   * Assign the project to an employee.
+   * @param {string} name - The name of the value which should be set.
+   * @param {*} data - The data of the value which should be set.
+   */
   set: function (name, data) {
     // Add the provided data to the values
     values[name] = data;
     // console.log(values);
   },
+  /**
+   * Log all the currently set values
+   */
   log: function () {
     // Log al current values
     console.log(values);

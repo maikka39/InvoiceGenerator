@@ -48,6 +48,10 @@
       // Load the values script
       const values = remote.require('./backend/values');
 
+      /**
+       * Send a template to the backend.
+       * @param {Object} template - The template which should be used.
+       */
       function selectTemplate(el) {
         // Set the value "offerte_type"
         values.set("offerte_type", el.name);

@@ -88,6 +88,10 @@
     // Load the values script
     const values = remote.require('./backend/values');
 
+    /**
+     * Submit a form to the backend.
+     * @param {Object} form - The form which should be submitted to the backend.
+     */
     function submitForm(el) {
       // Iterate through all the children of the form
       for (var i = 0; i < el.children.length; i++) {
