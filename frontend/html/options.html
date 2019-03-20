@@ -29,14 +29,14 @@
           <h3>or</h3>
           <div class="addcontent">
             <form onsubmit="return submitForm(this);">
-              <span>Bedrijf</span>
-              <input type="text" name="bedrijf"><br>
-              <span>Naam</span>
-              <input type="text" name="naam"><br>
-              <span>Iets_anders</span>
-              <input type="text" name="iets_anders"><br>
-              <span>E-Mail</span>
-              <input type="email" name="email"><br>
+              <label for="bedrijf">Bedrijf</label>
+              <input id="bedrijf" type="text" name="bedrijf" required><br>
+              <label for="naam">Naam</label>
+              <input id="naam" type="text" name="naam" required><br>
+              <label for="iets_anders">Iets_anders</label>
+              <input id="iets_anders" type="text" name="iets_anders" required><br>
+              <label for="email">E-Mail</label>
+              <input id="email" type="email" name="email" required><br>
               <button type="submit">Add</button>
             </form>
           </div>
