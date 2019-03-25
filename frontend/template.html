@@ -24,20 +24,41 @@
         </div>
     </section>
     <div class="columns has-text-centered has-margin-top-20">
-        <div class="column has-cursor-pointer template-item" onclick="console.log('Hey, i\'ve found this element')">
+        <div class="column has-cursor-pointer template-item" name="Eleganza" onclick="selectTemplate(this)">
                     <h1 class="title is-5">Eleganza</h1>
                     <img class="is-centered" src="./img/template.png" alt="template" width="200" class="image">
         </div>
-        <div class="column has-cursor-pointer template-item has-margin-top-10" onclick="console.log('Hey, i\'ve found this element')">
+        <div class="column has-cursor-pointer template-item has-margin-top-10" name="Eleganza" onclick="selectTemplate(this)">
                     <h1 class="title is-5">Eleganza</h1>
                     <img class="is-centered" src="./img/template.png" alt="template" width="200" class="image">
         </div>
-        <div class="column has-cursor-pointer template-item has-margin-top-10" onclick="console.log('Hey, i\'ve found this element')">
+        <div class="column has-cursor-pointer template-item has-margin-top-10" name="Eleganza" onclick="selectTemplate(this)">
                     <h1 class="title is-5">Eleganza</h1>
                     <img class="is-centered" src="./img/template.png" alt="template" width="200" class="image">
         </div>
-        
+
     </div>
+    <script type="text/javascript">
+      // Connect to the backend
+      const {
+        remote
+      } = require('electron');
+
+      // Load the values script
+      const values = remote.require('./backend/values');
+
+      /**
+       * Send a template to the backend.
+       * @param {Object} template - The div of the template which should be used.
+       */
+      function selectTemplate(el) {
+        // Set the type of invoice
+        values.set("invoice_type", el.getAttribute("name"));
+
+        // Go to the next page
+        window.location.href = "options.html";
+      }
+    </script>
 </body>
 
 </html>
