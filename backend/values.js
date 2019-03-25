@@ -31,14 +31,18 @@ let months = {
 let date = new Date();
 
 // Calculate all the values
-values["current_date"] = date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString();
-values["current_day"] = date.getDate();
-values["current_weekday_string"] = days[date.toString().substring(0, 3)];
-values["current_month"] = date.getMonth();
-values["current_month_string"] = months[date.getMonth()];
-values["current_year"] = date.getFullYear();
+dates = {
+  date: date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString(),
+  day: date.getDate(),
+  weekday_string: days[date.toString().substring(0, 3)],
+  month: date.getMonth(),
+  month_string: months[date.getMonth()],
+  year: date.getFullYear()
+}
 
-values["offerte_datum"] = values["current_weekday_string"] + ' ' + values["current_day"].toString() + ' ' + values["current_month_string"] + ' ' + values["current_year"];
+dates["invoice_date"] = dates["weekday_string"] + ' ' + dates["day"].toString() + ' ' + dates["month_string"] + ' ' + dates["year"];
+
+values["date"] = dates
 
 // Everything in here can be used by other scripts
 module.exports = {
