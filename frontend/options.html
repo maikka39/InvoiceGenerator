@@ -13,6 +13,16 @@
     <link rel="stylesheet" href="./css/bulma-accordion.min.css">
     <link rel="stylesheet" href="./css/bulma-checkradio.min.css">
     <link rel="stylesheet" href="./css/bulma.css">
+    <style media="screen">
+      .hidden {
+        display: none !important;
+      }
+
+      .perm_hidden {
+        display: none !important;
+      }
+    </style>
+
 </head>
 
 <body class="is-unselectable">
@@ -87,12 +97,12 @@
         </div>
         <div class="column has-margin-left-40 has-margin-right-40 template-item has-margin-top-10">
             <h1 class="title is-5">Products</h1>
-            <section class="accordions">
-                <article class="accordion">
+            <section class="accordions" id="product_list">
+                <article class="accordion hidden">
                     <div class="accordion-header toggle">
                         <div class="image is-32x32"><img src="./img/icon.png" alt=""></div>
-                            <p>Balk - #1234</p>
-                            <span class="delete"></span>
+                            <p>Product - #1234</p>
+                            <span class="delete" onclick="removeProduct(this)"></span>
                     </div>
                     <div style="overflow-x: scroll" class="accordion-body">
                         <div  class="accordion-content">
@@ -103,55 +113,24 @@
                                         <input class="input" type="text" placeholder="Example">
                                     </div>
                                 </div>
-                                <input class="is-checkradio is-block is-danger" id="example" type="checkbox"
+                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
                                     name="exampleCheckbox" checked="checked">
-                                <label for="example">voorbeeld</label>
-                                <input class="is-checkradio is-block is-primary" id="example2" type="checkbox"
+                                <label class="setFor">voorbeeld</label>
+                                <input class="is-checkradio is-block is-primary setID" type="checkbox"
                                     name="exampleCheckbox" checked="checked">
-                                <label for="example2">voorbeeld</label>
-                                <input class="is-checkradio is-block is-danger" id="example3" type="checkbox"
+                                <label class="setFor">voorbeeld</label>
+                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
                                     name="exampleCheckbox" checked="checked">
-                                <label for="example3">voorbeeld</label>
-                                <input class="is-checkradio is-block is-danger" id="example5" type="checkbox"
+                                <label class="setFor">voorbeeld</label>
+                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
                                     name="exampleCheckbox" checked="checked">
-                                <label for="example5">voorbeeld</label>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="accordion">
-                    <div class="accordion-header toggle">
-                        <div class="image is-32x32"><img src="./img/icon.png" alt=""></div>
-                            <p>Plank - #MZ1234</p>
-                            <span class="delete"></span>
-                    </div>
-                    <div style="overflow-x: scroll" class="accordion-body">
-                        <div  class="accordion-content">
-                            <div class="field">
-                                <div class="field">
-                                    <label class="label">Hoeveelheid</label>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Example">
-                                    </div>
-                                </div>
-                                <input class="is-checkradio is-block is-danger" id="example6" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label for="example6">voorbeeld</label>
-                                <input class="is-checkradio is-block is-primary" id="example7" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label for="example7">voorbeeld</label>
-                                <input class="is-checkradio is-block is-danger" id="example8" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label for="example8">voorbeeld</label>
-                                <input class="is-checkradio is-block is-danger" id="example9" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label for="example9">voorbeeld</label>
+                                <label class="setFor">voorbeeld</label>
                             </div>
                         </div>
                     </div>
                 </article>
             </section>
-            <article class="new button is-primary is-full-width has-text-centered">
+            <article class="new button is-primary is-full-width has-text-centered" onclick="addNewItemToProducts('product_list')">
                 <h1 class="title is-6" style="color: white;">Nieuw +</h1>
             </article>
         </div>
@@ -161,7 +140,19 @@
 </body>
 
 <script>
-    var accordions = bulmaAccordion.attach();
+  let productList = document.getElementById('product_list');
+
+  for (let i = 0; i < 49; i++) {
+    // Create a clone of the standard product
+    let cln = productList.children[0].cloneNode(true);
+    // cln.classList.remove('hidden');
+    // Append the editted clone the the parent
+    productList.appendChild(cln);
+  }
+
+  setIDs();
+
+  var accordions = bulmaAccordion.attach();
 </script>
 
 </html>

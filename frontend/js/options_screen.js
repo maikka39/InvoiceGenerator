@@ -77,8 +77,8 @@ function selectSavedClient(name) {
  * @param {Object} form - The form which should be submitted to the backend.
  */
 function submitForm(el) {
-  // Declare client_data
-  let client_data = {};
+  // Declare clientData
+  let clientData = {};
 
   // Iterate through all the children of the form
   for (let i = 0; i < el.children.length; i++) {
@@ -95,7 +95,7 @@ function submitForm(el) {
               // Set it to a variable
               let input = el.children[i].children[j].children[k];
               // And add it to the data
-              client_data[input.name] = input.value;
+              clientData[input.name] = input.value;
             }
           };
         }
@@ -103,7 +103,7 @@ function submitForm(el) {
     }
   };
   // Send the client data to the backend
-  values.set("client", client_data);
+  values.set("client", clientData);
 
   values.log();
 
@@ -112,11 +112,11 @@ function submitForm(el) {
     if (err) throw err;
     let clients = JSON.parse(data);
 
-    clients[client_data.company] = client_data;
+    clients[clientData.company] = clientData;
 
-    let new_data = JSON.stringify(clients, null, 2);
+    let newData = JSON.stringify(clients, null, 2);
 
-    fs.writeFile('./backend/clients.json', new_data, (err) => {
+    fs.writeFile('./backend/clients.json', newData, (err) => {
       if (err) throw err;
       console.log('Data written to file');
     });
@@ -125,3 +125,47 @@ function submitForm(el) {
   // Prevent the form from submitting
   return false;
 };
+
+function addNewItemToProducts(id) {
+  // let productList = document.getElementById(id);
+  //
+  // // Create a clone of the standard product
+  // let cln = productList.children[0].cloneNode(true);
+  // // Unhide the clone
+  // cln.classList.remove('hidden');
+  // // Append the editted clone the the parent
+  // productList.appendChild(cln);
+  let productList = document.querySelectorAll('.accordion');
+
+  for (let i = 0; i < productList.length; i++) {
+    if (productList[i].classList.contains('hidden')) {
+      productList[i].classList.remove('hidden');
+      productList[i].classList.add('used_for_data');
+      return;
+    }
+  }
+}
+
+function removeProduct(product) {
+  let correspondingAccordion = product.parentElement.parentElement;
+  correspondingAccordion.classList.remove('used_for_data');
+  correspondingAccordion.classList.add('perm_hidden');
+  if (correspondingAccordion.classList.contains('is-active')) {
+    correspondingAccordion.classList.remove('is-active');
+  }
+}
+
+
+function setIDs() {
+  let elements = document.getElementsByClassName('setID');
+
+  for (var i = 0; i < elements.length; i++) {
+    if (elements[i].tagName.toLowerCase() === "input") {
+      let id = Math.random();
+      elements[i].id = id;
+      if (elements[i].nextElementSibling.classList.contains('setFor')) {
+        elements[i].nextElementSibling.htmlFor = id;
+      }
+    }
+  }
+}
