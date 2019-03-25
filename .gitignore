@@ -10,8 +10,8 @@ logs/
 
 
 # Temp files
-tmp*
-temp*
+tmp.*
+temp.*
 
 
 # Dist files
