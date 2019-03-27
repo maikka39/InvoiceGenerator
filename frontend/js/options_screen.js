@@ -73,15 +73,11 @@ tenetel.parentNode.removeChild(tenetel);
 // Get the list with products
 let productList = document.getElementById('product_list');
 
-// Add one product you can see by copying the standard product
-let cln = productList.children[0].cloneNode(true);
-// Remove the hidden class so we can see it
-cln.classList.remove('hidden');
-// And then appending it the the product list
-productList.appendChild(cln);
+// Declare the clone variable
+let cln;
 
-// Create 48 extra products
-for (let i = 0; i < 48; i++) {
+// Create 49 extra hidden products
+for (let i = 0; i < 49; i++) {
   // Create a clone of the standard product
   cln = productList.children[0].cloneNode(true);
   // // Show the product
@@ -89,6 +85,9 @@ for (let i = 0; i < 48; i++) {
   // Append the editted clone the the parent
   productList.appendChild(cln);
 }
+
+// Add one product
+addProduct();
 
 // Give out ids
 setIDs();
@@ -192,9 +191,8 @@ function submitForm(el) {
 
 /**
  * Add a new product to a list .
- * @param {Object} id - The div to which a product should be added.
  */
-function addProduct(id) {
+function addProduct() {
   // // Get the productList from the id
   // let productList = document.getElementById(id);
   //
@@ -244,6 +242,7 @@ function removeProduct(product) {
  * Saves all the values to the backend and redirects user to the next page.
  */
 function saveOptions() {
+
   // // Go to the next page
   // window.location.href = "options.html";
 }
