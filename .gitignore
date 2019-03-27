@@ -20,3 +20,5 @@ dist/
 *.old
 backend/example.docx
 backend/output.docx
+
+.*
