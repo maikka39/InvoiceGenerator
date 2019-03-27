@@ -35,6 +35,55 @@ fs.readFile('./backend/clients.json', (err, data) => {
 
 });
 
+let data = fs.readFileSync('./backend/tenets.json');
+let tenets = JSON.parse(data)["dynamic"];
+// Get the tenet
+let tenetel = document.getElementById('tenet');
+let lcln;
+let lclnl;
+
+for (var tenet in tenets) {
+  if (tenets.hasOwnProperty(tenet)) {
+    // Create a clone of the standard product
+    tcln = tenetel.cloneNode(true);
+    tclnl = tenetel.nextElementSibling.cloneNode(true);
+    tcln.name = tenet;
+    tclnl.innerText = tenet;
+    // Append the editted clone the the parent
+    tenetel.parentNode.appendChild(tcln);
+    tenetel.parentNode.appendChild(tclnl);
+  }
+}
+
+// Remove the initial tenet element
+tenetel.parentNode.removeChild(tenetel.nextElementSibling);
+tenetel.parentNode.removeChild(tenetel);
+
+
+// Get the list with products
+let productList = document.getElementById('product_list');
+
+// Add one product you can see by copying the standard product
+let cln = productList.children[0].cloneNode(true);
+// Remove the hidden class so we can see it
+cln.classList.remove('hidden');
+// And then appending it the the product list
+productList.appendChild(cln);
+
+// Create 48 extra products
+for (let i = 0; i < 48; i++) {
+  // Create a clone of the standard product
+  cln = productList.children[0].cloneNode(true);
+  // // Show the product
+  // cln.classList.remove('hidden');
+  // Append the editted clone the the parent
+  productList.appendChild(cln);
+}
+
+setIDs();
+
+var accordions = bulmaAccordion.attach();
+
 /**
  * Select a client from a previous invoice.
  * @param {string} name - The name of the preset company.

@@ -1,0 +1,21 @@
+{
+  "static": {
+    "Parkeren": "Eventuele parkeerkosten worden netto doorberekend, we hebben groot zwaar materieel en hebben 1 parkeerplek nodig voor ingang.",
+    "Facturering": "Facturering materiaal bij levering circa 60% en arbeid naar rato uitvoering.",
+    "Betalingstermijn": "Betalingstermijn is 30 dagen.",
+    "Geldigheidstermijn": "Offerte is geldig tot 6 maanden na offertedatum.",
+    "Prijzen": "Genoemde prijzen zijn excl. 21% mBTW.",
+    "Nacalculatie eenheden": "Eenheden op basis van nacalculatie verrekenbaar.",
+    "Steiger": "Steiger tot een hoogte van maximaal 3.30 m 1 wordt verzorgt door Pennings.",
+    "Loskomende verf": "Herstel van loskomende verf en/of stuclagen als gevolg van onze afplakwerkzaamheden is voor rekening en risico van de opdrachtgever.",
+    "Lege werkvloeren": "Wij verwachten voor de werkzaamheden lege en vrije werkvloeren.",
+    "Werkuren": "Werk wordt uitgevoerd binnen normale dag/werk uren.",
+    "Oplevering": "Oplevering na onze laatste afwerklaag per ruimte.",
+    "Betalingstermijn": "Betalingstermijn is 30 dagen."
+  },
+  "dynamic": {
+    "Stijger": "Steiger hoger dan 3.30m wordt verzorgd door klant",
+    "Extra parkeren": "Eventuele parkeerkosten worden doorberekend, we hebben groot zwaar materieel en hebben 1 parkeerplek nodig voor ingang.",
+    "Container": "Bouwafval wordt in beschikbaar gestelde container gedeponeerd."
+  }
+}

@@ -113,16 +113,7 @@
                                         <input class="input" type="text" placeholder="Example">
                                     </div>
                                 </div>
-                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label class="setFor">voorbeeld</label>
-                                <input class="is-checkradio is-block is-primary setID" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label class="setFor">voorbeeld</label>
-                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
-                                    name="exampleCheckbox" checked="checked">
-                                <label class="setFor">voorbeeld</label>
-                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
+                                <input class="is-checkradio is-block is-danger setID" id="tenet" type="checkbox"
                                     name="exampleCheckbox" checked="checked">
                                 <label class="setFor">voorbeeld</label>
                             </div>
@@ -138,31 +129,5 @@
     </div>
     <script src="./js/options_screen.js" charset="utf-8"></script>
 </body>
-
-<script>
-  // Get the list with products
-  let productList = document.getElementById('product_list');
-
-  // Add one product you can see by copying the standard product
-  let cln = productList.children[0].cloneNode(true);
-  // Remove the hidden class so we can see it
-  cln.classList.remove('hidden');
-  // And then appending it the the product list
-  productList.appendChild(cln);
-
-  // Create 48 extra products
-  for (let i = 0; i < 48; i++) {
-    // Create a clone of the standard product
-    let cln = productList.children[0].cloneNode(true);
-    // // Show the product
-    // cln.classList.remove('hidden');
-    // Append the editted clone the the parent
-    productList.appendChild(cln);
-  }
-
-  setIDs();
-
-  var accordions = bulmaAccordion.attach();
-</script>
 
 </html>
