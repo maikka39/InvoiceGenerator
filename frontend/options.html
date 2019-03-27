@@ -4,23 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>IG - Options</title>
+    <title>invoiceGenerator - Opties</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script defer src="./js/font-awesome.js"></script>
-    <script type="text/javascript"
-        src="./js/bulma-accordion.min.js"></script>
+    <script type="text/javascript" src="./js/bulma-accordion.min.js"></script>
     <link rel="stylesheet" href="./css/options.css">
     <link rel="stylesheet" href="./css/bulma-accordion.min.css">
     <link rel="stylesheet" href="./css/bulma-checkradio.min.css">
     <link rel="stylesheet" href="./css/bulma.css">
     <style media="screen">
-      .hidden {
-        display: none !important;
-      }
+        .hidden {
+            display: none !important;
+        }
 
-      .perm_hidden {
-        display: none !important;
-      }
+        .perm_hidden {
+            display: none !important;
+        }
     </style>
 
 </head>
@@ -47,51 +46,60 @@
                     </div>
                     <div class="level-right">
                         <div class="dropdown is-hoverable">
-                          <div class="dropdown-trigger">
-                            <button class="button is-danger has-cursor-pointer is-small is-rounded"><i class="fas fa-folder-open"></i> &nbsp;
-                                Open &nbsp; <i class="fa fa-angle-down"></i></button>
-                          </div>
-                          <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                            <div class="dropdown-content">
-                                <div class="dropdown-item" onclick="selectSavedClient(this.children[0].innerText)" style="cursor: pointer;">
-                                  <a>Bedrijfsnaam</a>
+                            <div class="dropdown-trigger">
+                                <button class="button is-danger has-cursor-pointer is-small is-rounded"><i
+                                        class="fas fa-folder-open"></i> &nbsp;
+                                    Open &nbsp; <i class="fa fa-angle-down"></i></button>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item" onclick="selectSavedClient(this.children[0].innerText)"
+                                        style="cursor: pointer;">
+                                        <a>Bedrijfsnaam</a>
+                                    </div>
                                 </div>
                             </div>
-                          </div>
                         </div>
                     </div>
                 </div>
                 <form onsubmit="return submitForm(this);">
-                  <div class="field">
-                      <label class="label">Bedrijf</label>
-                      <div class="control">
-                          <input class="input client_field" type="text" name="company" placeholder="Bedrijfsnaam" required>
-                      </div>
-                  </div>
-                  <div class="field">
-                      <label class="label">Contactpersoon</label>
-                      <div class="control">
-                          <input class="input client_field" type="text" name="salutation" placeholder="Aanhef" required>
-                          <input class="input client_field" type="text" name="firstname" placeholder="Voornaam" required>
-                          <input class="input client_field" type="text" name="insertion" placeholder="Tussenvoegsel" required>
-                          <input class="input client_field" type="text" name="lastname" placeholder="Achternaam" required>
-                      </div>
-                  </div>
-                  <div class="field">
-                      <label class="label">E-Mail</label>
-                      <div class="control">
-                          <input class="input client_field" type="text" name="email" placeholder="E-Mail" required>
-                      </div>
-                  </div>
-                  <div class="field">
-                      <label class="label">Adres</label>
-                      <div class="control">
-                          <input class="input client_field" type="text" name="street" placeholder="Straatnaam" required>
-                          <input class="input client_field" type="text" name="postalcode" placeholder="Postcode" required>
-                          <input class="input client_field" type="text" name="city" placeholder="Plaats" required>
-                      </div>
-                  </div>
-                  <button type="submit" class="button is-primary">Opslaan</button>
+                    <div class="field">
+                        <label class="label">Bedrijf</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="company" placeholder="Bedrijfsnaam"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Contactpersoon</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="salutation" placeholder="Aanhef"
+                                required>
+                            <input class="input client_field" type="text" name="firstname" placeholder="Voornaam"
+                                required>
+                            <input class="input client_field" type="text" name="insertion" placeholder="Tussenvoegsel"
+                                required>
+                            <input class="input client_field" type="text" name="lastname" placeholder="Achternaam"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">E-Mail</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="email" placeholder="E-Mail" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Adres</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="street" placeholder="Straatnaam"
+                                required>
+                            <input class="input client_field" type="text" name="postalcode" placeholder="Postcode"
+                                required>
+                            <input class="input client_field" type="text" name="city" placeholder="Plaats" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="button is-primary">Opslaan</button>
                 </form>
             </div>
         </div>
@@ -102,19 +110,20 @@
                     <div class="accordion-header toggle">
                         <div class="image is-32x32"><img src="./img/icon.png" alt=""></div>
                             <p>Product - #1234</p>
-                            <span class="delete" onclick="removeProduct(this)"></span>
+                            <button class="button is-small is-rounded is-danger"><i class="fa fa-edit"></i></button>
+                        <span class="delete" onclick="removeProduct(this)"></span>
                     </div>
                     <div style="overflow-x: scroll" class="accordion-body">
-                        <div  class="accordion-content">
+                        <div class="accordion-content">
                             <div class="field">
                                 <div class="field">
                                     <label class="label">Hoeveelheid</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Example">
+                                        <input class="input" placeholder="Aantal" min="0" type="number">
                                     </div>
                                 </div>
-                                <input class="is-checkradio is-block is-danger setID" id="tenet" type="checkbox"
-                                    name="exampleCheckbox">
+                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
+                                    name="exampleCheckbox" id="tenet">
                                 <label class="setFor">voorbeeld</label>
                             </div>
                         </div>
@@ -125,9 +134,37 @@
                 <h1 class="title is-6" style="color: white;">Nieuw +</h1>
             </article>
         </div>
-
     </div>
-    <script src="./js/options_screen.js" charset="utf-8"></script>
+    <div class="hero is-primary">
+        <div class="hero-body">
+            <button class="button is-pulled-right is-light is-rounded has-margin-right-40 is-medium is-outlined">Next</button>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="prduct_popup">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Products</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <a style="cursor: pointer" class="level">
+                    <div class="level-item">
+                        <h1 class="title is-5">Productname</h1>
+                    </div>
+                    <div class="level-item">
+                        #AAAAA
+                    </div>
+                </a>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-rounded">Cancel</button>
+            </footer>
+        </div>
+    </div>
 </body>
 
 </html>
