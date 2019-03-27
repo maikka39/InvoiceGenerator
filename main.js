@@ -14,6 +14,8 @@ function createWindow() {
     height: 600
   })
 
+  win.setMenu(null);
+
   // and load the main.html of the app.
   win.loadFile('frontend/template.html')
 
