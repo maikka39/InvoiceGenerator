@@ -130,7 +130,7 @@
                     </div>
                 </article>
             </section>
-            <article class="new button is-primary is-full-width has-text-centered" onclick="addNewItemToProducts('product_list')">
+            <article class="new button is-primary is-full-width has-text-centered" onclick="addProduct('product_list')">
                 <h1 class="title is-6" style="color: white;">Nieuw +</h1>
             </article>
         </div>
@@ -140,9 +140,18 @@
 </body>
 
 <script>
+  // Get the list with products
   let productList = document.getElementById('product_list');
 
-  for (let i = 0; i < 49; i++) {
+  // Add one product you can see by copying the standard product
+  let cln = productList.children[0].cloneNode(true);
+  // Remove the hidden class so we can see it
+  cln.classList.remove('hidden');
+  // And then appending it the the product list
+  productList.appendChild(cln);
+
+  // Create 48 extra products
+  for (let i = 0; i < 48; i++) {
     // Create a clone of the standard product
     let cln = productList.children[0].cloneNode(true);
     // cln.classList.remove('hidden');

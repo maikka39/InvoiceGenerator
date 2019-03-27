@@ -126,7 +126,12 @@ function submitForm(el) {
   return false;
 };
 
-function addNewItemToProducts(id) {
+/**
+ * Add a new product to a list .
+ * @param {Object} id - The div to which a product should be added.
+ */
+function addProduct(id) {
+  // // Get the productList from the id
   // let productList = document.getElementById(id);
   //
   // // Create a clone of the standard product
@@ -135,35 +140,62 @@ function addNewItemToProducts(id) {
   // cln.classList.remove('hidden');
   // // Append the editted clone the the parent
   // productList.appendChild(cln);
+
+  // Get all the accordions
   let productList = document.querySelectorAll('.accordion');
 
+  // Loop through them
   for (let i = 0; i < productList.length; i++) {
+    // If it is hidden
     if (productList[i].classList.contains('hidden')) {
+      // Show it
       productList[i].classList.remove('hidden');
+      // Mark it as 'used for data'
       productList[i].classList.add('used_for_data');
+      // Stop
       return;
     }
   }
 }
 
+/**
+ * Remove a product from a list .
+ * @param {Object} product - The product which should be removed.
+ */
 function removeProduct(product) {
+  // Get the product element
   let correspondingAccordion = product.parentElement.parentElement;
-  correspondingAccordion.classList.remove('used_for_data');
-  correspondingAccordion.classList.add('perm_hidden');
+  // If the product is opened
   if (correspondingAccordion.classList.contains('is-active')) {
+    // Close the product
     correspondingAccordion.classList.remove('is-active');
   }
+  // Make it permanently hidden
+  correspondingAccordion.classList.add('perm_hidden');
+  // Mark it as not used
+  correspondingAccordion.classList.remove('used_for_data');
 }
 
-
+/**
+ * Set ids for all DOM elements with the class setID.
+ */
 function setIDs() {
+  // Get all the elements with the 'setID' class
   let elements = document.getElementsByClassName('setID');
 
+  // Iterate through all the element
   for (var i = 0; i < elements.length; i++) {
+    // If it is of the type input
     if (elements[i].tagName.toLowerCase() === "input") {
-      let id = Math.random();
+      // Create an id
+      let id = 1000 + i;
+      // Set the id of the element
       elements[i].id = id;
+      // Remove the 'setID' class
+      elements[i].classList.remove('setID');
+      // If the next element has the 'setFor' class
       if (elements[i].nextElementSibling.classList.contains('setFor')) {
+        // Set the for value to the id
         elements[i].nextElementSibling.htmlFor = id;
       }
     }
