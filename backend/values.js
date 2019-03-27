@@ -54,7 +54,6 @@ module.exports = {
   set: function (name, data) {
     // Add the provided data to the values
     values[name] = data;
-    // console.log(values);
   },
   /**
    * Log all the currently set values

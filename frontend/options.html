@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <form onsubmit="return submitForm(this);">
+                <form name="setCustomer" id="setCustomer" onsubmit="return submitForm(this);">
                     <div class="field">
                         <label class="label">Bedrijf</label>
                         <div class="control">
@@ -104,13 +104,12 @@
             </div>
         </div>
         <div class="column has-margin-left-40 has-margin-right-40 template-item has-margin-top-10">
-            <h1 class="title is-5">Products</h1>
+            <h1 class="title is-5">Producten</h1>
             <section class="accordions" id="product_list">
                 <article class="accordion hidden">
                     <div class="accordion-header toggle">
                         <div class="image is-32x32"><img src="./img/icon.png" alt=""></div>
-                            <p>Product - #1234</p>
-                            <button class="button is-small is-rounded is-danger"><i class="fa fa-edit"></i></button>
+                        <p>Product</p>
                         <span class="delete" onclick="removeProduct(this)"></span>
                     </div>
                     <div style="overflow-x: scroll" class="accordion-body">
@@ -119,53 +118,52 @@
                                 <div class="field">
                                     <label class="label">Hoeveelheid</label>
                                     <div class="control">
-                                        <input class="input" placeholder="Aantal" min="0" type="number">
+                                        <input class="input" placeholder="Aantal" min="0" value="1" type="number">
                                     </div>
                                 </div>
+                                <p class="title is-6">Door de klant wordt geleverd:</p>
                                 <input class="is-checkradio is-block is-danger setID" type="checkbox"
                                     name="exampleCheckbox" id="tenet">
-                                <label class="setFor">voorbeeld</label>
+                                <label class="setFor"></label>
                             </div>
                         </div>
                     </div>
                 </article>
             </section>
-            <article class="new button is-primary is-full-width has-text-centered" onclick="addProduct()">
+            <article class="new button is-primary is-full-width has-text-centered" onclick="chooseProduct()">
                 <h1 class="title is-6" style="color: white;">Nieuw +</h1>
             </article>
         </div>
     </div>
     <div class="hero is-primary">
         <div class="hero-body">
-            <button class="button is-pulled-right is-light is-rounded has-margin-right-40 is-medium is-outlined">Next</button>
+            <button class="button is-pulled-right is-light is-rounded has-margin-right-40 is-medium is-outlined" onclick="saveOptions()">Next</button>
         </div>
     </div>
 
 
 
-    <div class="modal" id="prduct_popup">
+    <div class="modal" id="product_popup">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">Products</p>
-                <button class="delete" aria-label="close"></button>
+                <p class="modal-card-title">Producten</p>
+                <button class="delete" aria-label="close" onclick="document.getElementById('product_popup').classList.remove('is-active')"></button>
             </header>
-            <section class="modal-card-body">
-                <a style="cursor: pointer" class="level">
-                    <div class="level-item">
-                        <h1 class="title is-5">Productname</h1>
-                    </div>
-                    <div class="level-item">
-                        #AAAAA
-                    </div>
-                </a>
+            <section class="modal-card-body" id="popup_products">
+              <h1 class="title is-5 has-text-centered">Categorie</h1>
+              <a style="cursor: pointer" class="level">
+                  <div class="level-item" onclick="addProduct(this)">
+                      <span></span>
+                  </div>
+              </a>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-rounded">Cancel</button>
+                <button class="button is-rounded" onclick="document.getElementById('product_popup').classList.remove('is-active')">Annuleren</button>
             </footer>
         </div>
     </div>
-    
+
     <script src="./js/options_screen.js" charset="utf-8"></script>
 </body>
 

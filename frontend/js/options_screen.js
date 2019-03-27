@@ -47,7 +47,7 @@ let lcln;
 let lclnl;
 
 // Iterate through all the tenets
-for (var tenet in tenets) {
+for (let tenet in tenets) {
   // If the tenet actually exists
   if (tenets.hasOwnProperty(tenet)) {
     // Create a clone of the standard product
@@ -70,6 +70,51 @@ tenetel.parentNode.removeChild(tenetel.nextElementSibling);
 tenetel.parentNode.removeChild(tenetel);
 
 
+// Read the clients file
+fs.readFile('./backend/products.json', (err, data) => {
+  // If there is an error, throw it
+  if (err) throw err;
+  // Parse the json file and grab the products
+  let products = JSON.parse(data);
+
+  // Get the popup_products menu
+  let popupProducts = document.getElementById('popup_products');
+
+  // For every product in the JSON file
+  for (let category in products) {
+    if (products.hasOwnProperty(category)) {
+      // Copy the template category header
+      let ccln = popupProducts.children[0].cloneNode(true);
+      // Set the text of it to the name of the category
+      ccln.innerText = category;
+      // Add the category header to the popupProducts
+      popupProducts.appendChild(ccln);
+      for (let product in products[category]) {
+        if (products[category].hasOwnProperty(product)) {
+          // Create a clone of the standard product
+          let pcln = popupProducts.children[1].cloneNode(true);
+          // Set the text to the product name
+          pcln.children[0].children[0].innerText = product;
+          // Append the editted clone the the parent
+          popupProducts.appendChild(pcln);
+        }
+      }
+    }
+  }
+
+  // Remove the initial option
+  popupProducts.removeChild(popupProducts.children[0]);
+  popupProducts.removeChild(popupProducts.children[0]);
+
+});
+
+
+
+
+
+
+
+
 // Get the list with products
 let productList = document.getElementById('product_list');
 
@@ -86,14 +131,11 @@ for (let i = 0; i < 49; i++) {
   productList.appendChild(cln);
 }
 
-// Add one product
-addProduct();
-
 // Give out ids
 setIDs();
 
 // Make all accordions work with the bulma library
-var accordions = bulmaAccordion.attach();
+let accordions = bulmaAccordion.attach();
 
 /**
  * Select a client from a previous invoice.
@@ -115,7 +157,7 @@ function selectSavedClient(name) {
       let fields = document.getElementsByClassName('client_field');
 
       // For every field
-      for (var i = 0; i < fields.length; i++) {
+      for (let i = 0; i < fields.length; i++) {
         // If the client has that property set
         if (client.hasOwnProperty(fields[i].name)) {
           // Set the correct value
@@ -155,6 +197,10 @@ function submitForm(el) {
               // Set it to a variable
               let input = el.children[i].children[j].children[k];
               // And add it to the data
+              if (input.value == "") {
+                alert("Vul alstublieft alle klantgegevens in.");
+                return "not_all_fields";
+              }
               clientData[input.name] = input.value;
             }
           };
@@ -190,18 +236,24 @@ function submitForm(el) {
 };
 
 /**
- * Add a new product to a list .
+ * Choose a product from a popup window .
  */
-function addProduct() {
-  // // Get the productList from the id
-  // let productList = document.getElementById(id);
-  //
-  // // Create a clone of the standard product
-  // let cln = productList.children[0].cloneNode(true);
-  // // Unhide the clone
-  // cln.classList.remove('hidden');
-  // // Append the editted clone the the parent
-  // productList.appendChild(cln);
+function chooseProduct() {
+  let popup_screen = document.getElementById('product_popup');
+
+  popup_screen.classList.add('is-active');
+}
+
+/**
+ * Add a new product to a list.
+ * @param {Object} el - The element which was selected in the popup window.
+ */
+function addProduct(el) {
+  let popup_screen = document.getElementById('product_popup');
+
+  if (popup_screen.classList.contains('is-active')) {
+    popup_screen.classList.remove('is-active')
+  }
 
   // Get all the accordions
   let productList = document.querySelectorAll('.accordion');
@@ -214,6 +266,8 @@ function addProduct() {
       productList[i].classList.remove('hidden');
       // Mark it as 'used for data'
       productList[i].classList.add('used_for_data');
+      // Change the title to the selected item
+      productList[i].firstElementChild.children[1].innerText = el.firstElementChild.innerText
       // Stop
       return;
     }
@@ -242,9 +296,44 @@ function removeProduct(product) {
  * Saves all the values to the backend and redirects user to the next page.
  */
 function saveOptions() {
+  if (submitForm(document.getElementById('setCustomer')) === "not_all_fields") {
+    return;
+  }
 
-  // // Go to the next page
-  // window.location.href = "options.html";
+  let products = [];
+
+  let usedProducts = document.getElementsByClassName('used_for_data');
+
+  for (let i = 0; i < usedProducts.length; i++) {
+    let product = {};
+
+    let productName = usedProducts[i].firstElementChild.children[1].innerText;
+    let productAmount = usedProducts[i].lastElementChild.firstElementChild.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value;
+
+    if (productAmount === "") {
+      alert("Vul alstublieft alle hoeveelheden in.");
+      return;
+    }
+
+    product["name"] = productName;
+    product["amount"] = productAmount;
+    product["tenets"] = {};
+
+    let checkboxes = usedProducts[i].lastElementChild.firstElementChild.firstElementChild;
+
+    for (let i = 0; i < checkboxes.children.length; i++) {
+      if (checkboxes.children[i].tagName.toLowerCase() === "input") {
+        product["tenets"][checkboxes.children[i].nextElementSibling.innerText] = checkboxes.children[i].checked;
+      }
+    }
+
+    products.push(product);
+  }
+
+  values.set("products", products);
+
+  // Go to the next page
+  window.location.href = "next.html";
 }
 
 /**
@@ -255,7 +344,7 @@ function setIDs() {
   let elements = document.getElementsByClassName('setID');
 
   // Iterate through all the element
-  for (var i = 0; i < elements.length; i++) {
+  for (let i = 0; i < elements.length; i++) {
     // If it is of the type input
     if (elements[i].tagName.toLowerCase() === "input") {
       // Create an id
