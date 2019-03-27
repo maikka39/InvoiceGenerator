@@ -35,27 +35,37 @@ fs.readFile('./backend/clients.json', (err, data) => {
 
 });
 
+// Read the tenets file in a synchronous manner
 let data = fs.readFileSync('./backend/tenets.json');
+// Parse the data and get the dynamic part
 let tenets = JSON.parse(data)["dynamic"];
-// Get the tenet
+// Get the template tenet element
 let tenetel = document.getElementById('tenet');
+
+// Declare some variables
 let lcln;
 let lclnl;
 
+// Iterate through all the tenets
 for (var tenet in tenets) {
+  // If the tenet actually exists
   if (tenets.hasOwnProperty(tenet)) {
     // Create a clone of the standard product
     tcln = tenetel.cloneNode(true);
+    // Create a clone of its label
     tclnl = tenetel.nextElementSibling.cloneNode(true);
+    // Set the name of the input
     tcln.name = tenet;
+    // Set the text of its corresponding label
     tclnl.innerText = tenet;
     // Append the editted clone the the parent
     tenetel.parentNode.appendChild(tcln);
+    // Append the editted clone's label the the parent
     tenetel.parentNode.appendChild(tclnl);
   }
 }
 
-// Remove the initial tenet element
+// Remove the initial tenet element and its label
 tenetel.parentNode.removeChild(tenetel.nextElementSibling);
 tenetel.parentNode.removeChild(tenetel);
 
@@ -80,8 +90,10 @@ for (let i = 0; i < 48; i++) {
   productList.appendChild(cln);
 }
 
+// Give out ids
 setIDs();
 
+// Make all accordions work with the bulma library
 var accordions = bulmaAccordion.attach();
 
 /**
@@ -154,20 +166,23 @@ function submitForm(el) {
   // Send the client data to the backend
   values.set("client", clientData);
 
-  values.log();
-
   // Save as company
   fs.readFile('./backend/clients.json', (err, data) => {
+    // If there is an error, throw it
     if (err) throw err;
+    // Parse the read JSON data
     let clients = JSON.parse(data);
 
+    // Create a new entry, or modify an existing one, with the filled in data
     clients[clientData.company] = clientData;
 
+    // Convert back to JSON
     let newData = JSON.stringify(clients, null, 2);
 
+    // Write it to the file
     fs.writeFile('./backend/clients.json', newData, (err) => {
+      // If there is an error, throw it
       if (err) throw err;
-      console.log('Data written to file');
     });
   });
 
@@ -223,6 +238,14 @@ function removeProduct(product) {
   correspondingAccordion.classList.add('perm_hidden');
   // Mark it as not used
   correspondingAccordion.classList.remove('used_for_data');
+}
+
+/**
+ * Saves all the values to the backend and redirects user to the next page.
+ */
+function saveOptions() {
+  // // Go to the next page
+  // window.location.href = "options.html";
 }
 
 /**
