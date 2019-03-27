@@ -191,8 +191,6 @@ function setIDs() {
       let id = 1000 + i;
       // Set the id of the element
       elements[i].id = id;
-      // Remove the 'setID' class
-      elements[i].classList.remove('setID');
       // If the next element has the 'setFor' class
       if (elements[i].nextElementSibling.classList.contains('setFor')) {
         // Set the for value to the id
