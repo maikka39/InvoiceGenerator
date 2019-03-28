@@ -74,16 +74,29 @@
         return params;
       };
 
+      /**
+       * Upload a file to the user.
+       * @param {string} link - The link to the file which should be downloaded.
+       * @param {string} filename - The name with which the file should be saved.
+       */
       function download(link, filename) {
+        // Create an anchor element
         var element = document.createElement('a');
+        // Point the href to the link
         element.setAttribute('href', link);
+        // Set the download attribute so it will download and not open
+        // Also, set it to the filename which is then automatically filled in when the user downloads the file
         element.setAttribute('download', filename);
 
+        // Hide the element so the user doesn't see it
         element.style.display = 'none';
+        // Add it to the body of the html
         document.body.appendChild(element);
 
+        // Simulate a click on the element
         element.click();
 
+        // Then remove it
         document.body.removeChild(element);
       }
 
