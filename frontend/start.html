@@ -13,30 +13,66 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <h1 class="title is-pulled-left">InvoiceGenerator</h1>
-            <button class="button is-pulled-right is-light is-rounded is-outlined">Instellingen</button>
+            <button class="button is-pulled-right is-light is-rounded is-outlined" onclick="window.location.href = 'settings.html'">Instellingen</button>
         </div>
     </section>
     <div class="columns has-margin-top-30">
         <div class="column  is-5 is-offset-2">
             <label for="" class="label">Project</label>
-            <input type="text" class="input is-large" placeholder="Project">
+            <input type="text" class="input is-large" placeholder="Project" id="project_title">
         </div>
         <div class="column is-3">
             <label for="" class="label">Projectnummer</label>
-            <input type="text" class="input is-large" placeholder="Projectnummer">
+            <input type="text" class="input is-large" placeholder="Projectnummer" id="project_number">
         </div>
     </div>
     <div class="columns">
         <div class="column is-8 is-offset-2">
             <label for="" class="label">Aanvraagdatum</label>
-            <input type="date" class="input is-large" placeholder="Aanvraag datum">
+            <input type="date" class="input is-large" placeholder="Aanvraag datum" id="request_date">
         </div>
     </div>
     <section class="hero">
         <div class="hero-body has-text-centered">
-            <button class="button is-danger is-large">Start</button>
+            <button class="button is-danger is-large" onclick="nextScreen()">Start</button>
         </div>
     </section>
+
+    <script type="text/javascript">
+      // Connect to the backend
+      const {
+        remote
+      } = require('electron');
+
+      // Load the values script
+      const values = remote.require('./backend/values');
+
+      /**
+       * Save data and go to the next screen.
+       */
+      function nextScreen() {
+        // Get the values of the fields
+        let projectTitle = document.getElementById('project_title').value;
+        let projectNumber = document.getElementById('project_number').value;
+        let requestDate = document.getElementById('request_date').value;
+
+        // If one or more of them are empty
+        if (projectTitle === "" || projectNumber === "" || requestDate === "") {
+          // Report to the user
+          alert("Vul alstublieft alle gegevens in.");
+          // And stop executing the rest of the code
+          return;
+        }
+
+        // Send the values to the backend
+        values.set('project_title', projectTitle);
+        values.set('project_number', projectNumber);
+        values.set('request_date', requestDate);
+
+        // Redirect the user to the next page
+        window.location.href = "template.html";
+      }
+    </script>
 </body>
 
 </html>
