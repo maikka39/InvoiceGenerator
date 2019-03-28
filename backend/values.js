@@ -44,7 +44,7 @@ dates = {
   year: date.getFullYear()
 }
 
-dates["invoice_date"] = dates["weekday_string"] + ' ' + dates["day"].toString() + ' ' + dates["month_string"] + ' ' + dates["year"];
+values["invoice_date"] = dates["weekday_string"] + ' ' + dates["day"].toString() + ' ' + dates["month_string"] + ' ' + dates["year"];
 
 values["date"] = dates
 
