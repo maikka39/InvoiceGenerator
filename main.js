@@ -17,7 +17,7 @@ function createWindow() {
   win.setMenu(null);
 
   // and load the main.html of the app.
-  win.loadFile('frontend/template.html')
+  //win.loadFile('frontend/start.html')
 
   // Open the DevTools.
   //win.webContents.openDevTools()
