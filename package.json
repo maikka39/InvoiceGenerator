@@ -26,9 +26,8 @@
     "electron-builder": "^20.39.0"
   },
   "build": {
-    "appId": "tk.maikka39.invoicegenerater",
+    "appId": "dev.maik.invoicegenerater",
     "productName": "InvoiceGenerator",
-    "copyright": "Copyright © 2018 Maik de Kruif",
     "directories": {
       "buildResources": "build",
       "output": "dist",
