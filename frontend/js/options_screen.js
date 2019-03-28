@@ -197,7 +197,7 @@ function submitForm(el) {
               // Set it to a variable
               let input = el.children[i].children[j].children[k];
               // And add it to the data
-              if (input.value == "") {
+              if (input.value == "" && input.name !== "insertion") {
                 alert("Vul alstublieft alle klantgegevens in.");
                 return "not_all_fields";
               }
