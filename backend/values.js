@@ -1,5 +1,7 @@
+// Import the 'fs' library
 const fs = require('fs');
 
+// Declare the global values dictonary
 let values = {};
 
 // Dictonary to convert weekday to Dutch
