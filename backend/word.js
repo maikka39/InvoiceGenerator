@@ -63,6 +63,6 @@ module.exports = {
     fs.writeFileSync(path.resolve(__dirname, "../output", output_file), buf);
 
     // Return the path to the outputed file
-    return path.resolve(__dirname, output_file);
+    return output_file;
   }
 }
