@@ -6,6 +6,9 @@ const {
 // Import the 'fs' library
 const fs = remote.require('fs');
 
+// Make the bulma accordions work
+var accordions = bulmaAccordion.attach();
+
 // Get the product_names container
 let productNames = document.getElementById('product_names');
 let productPrice = document.getElementById('product_price');
