@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 let values = {};
 
 // Dictonary to convert weekday to Dutch
@@ -61,5 +63,15 @@ module.exports = {
   log: function () {
     // Log al current values
     console.log(values);
+  },
+  save: function () {
+    // Convert values to JSON
+    let data = JSON.stringify(values, null, 2);
+
+    // Write it to a file
+    fs.writeFile('./backend/values.json', data, (err) => {
+      // If there is an error, throw it
+      if (err) throw err;
+    });
   }
 };

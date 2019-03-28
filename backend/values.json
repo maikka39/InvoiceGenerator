@@ -1,0 +1,60 @@
+{
+  "date": {
+    "date": "28-2-2019",
+    "day": 28,
+    "weekday_string": "donderdag",
+    "month": 2,
+    "month_string": "februari",
+    "year": 2019,
+    "invoice_date": "donderdag 28 februari 2019"
+  },
+  "invoice_type": "Eleganza",
+  "client": {
+    "company": "Test",
+    "salutation": "a",
+    "firstname": "a",
+    "insertion": "a",
+    "lastname": "a",
+    "email": "a",
+    "street": "a",
+    "postalcode": "a",
+    "city": "a"
+  },
+  "products": [{
+      "name": "Akoestische spuitpleister Silentplaster",
+      "amount": "31",
+      "tenets": {
+        "Stijger": false,
+        "Extra parkeren": false,
+        "Container": false
+      }
+    },
+    {
+      "name": "Luchtdichte tape",
+      "amount": "1",
+      "tenets": {
+        "Stijger": false,
+        "Extra parkeren": true,
+        "Container": false
+      }
+    },
+    {
+      "name": "Middelspuitwerk profilen leveren",
+      "amount": "45645",
+      "tenets": {
+        "Stijger": false,
+        "Extra parkeren": false,
+        "Container": false
+      }
+    },
+    {
+      "name": "Projectbegeleiding",
+      "amount": "42",
+      "tenets": {
+        "Stijger": false,
+        "Extra parkeren": false,
+        "Container": true
+      }
+    }
+  ]
+}
