@@ -18,7 +18,9 @@ temp.*
 dist/
 
 *.old
-backend/example.docx
-backend/output.docx
+templates/*
+
+# All rendered files
+output/*
 
 .*
