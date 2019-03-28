@@ -8,7 +8,7 @@ const values = remote.require('./backend/values');
 const fs = remote.require('fs');
 
 // Read the clients file
-fs.readFile('./backend/clients.json', (err, data) => {
+fs.readFile('./backend/databases/clients.json', (err, data) => {
   // If there is an error, throw it
   if (err) throw err;
   // Parse the json file
@@ -36,7 +36,7 @@ fs.readFile('./backend/clients.json', (err, data) => {
 });
 
 // Read the tenets file in a synchronous manner
-let data = fs.readFileSync('./backend/tenets.json');
+let data = fs.readFileSync('./backend/databases/tenets.json');
 // Parse the data and get the dynamic part
 let tenets = JSON.parse(data)["dynamic"];
 // Get the template tenet element
@@ -71,7 +71,7 @@ tenetel.parentNode.removeChild(tenetel);
 
 
 // Read the clients file
-fs.readFile('./backend/products.json', (err, data) => {
+fs.readFile('./backend/databases/products.json', (err, data) => {
   // If there is an error, throw it
   if (err) throw err;
   // Parse the json file and grab the products
@@ -143,7 +143,7 @@ let accordions = bulmaAccordion.attach();
  */
 function selectSavedClient(name) {
   // Read the clients file
-  fs.readFile('./backend/clients.json', (err, data) => {
+  fs.readFile('./backend/databases/clients.json', (err, data) => {
     // If there is an error, throw it
     if (err) throw err;
     // Parse the json file
@@ -212,7 +212,7 @@ function submitForm(el) {
   values.set("client", clientData);
 
   // Save as company
-  fs.readFile('./backend/clients.json', (err, data) => {
+  fs.readFile('./backend/databases/clients.json', (err, data) => {
     // If there is an error, throw it
     if (err) throw err;
     // Parse the read JSON data
@@ -225,7 +225,7 @@ function submitForm(el) {
     let newData = JSON.stringify(clients, null, 2);
 
     // Write it to the file
-    fs.writeFile('./backend/clients.json', newData, (err) => {
+    fs.writeFile('./backend/databases/clients.json', newData, (err) => {
       // If there is an error, throw it
       if (err) throw err;
     });
