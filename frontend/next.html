@@ -21,7 +21,7 @@
                 </h2>
                 <div class="container is-vcentered">
                     <h1>Genereren van het calculatiesheet..</h1></div>
-                        <progress class="progress is-danger is-half-width" value="30" max="100"></progress>
+                        <progress class="progress is-danger is-half-width" id="progress_bar" value="30" max="100"></progress>
                 </div>
             </div>
         </div>
@@ -33,23 +33,60 @@
         remote
       } = require('electron');
 
-      // Load the values script
-      const values = remote.require('./backend/values');
+      const fs = remote.require('fs');
 
-      values.log();
-      values.save();
+      let progressBar = document.getElementById('progress_bar');
 
-      // /**
-      //  * Send a template to the backend.
-      //  * @param {Object} template - The div of the template which should be used.
-      //  */
-      // function selectTemplate(el) {
-      //   // Set the type of invoice
-      //   values.set("invoice_type", el.getAttribute("name"));
-      //
-      //   // Go to the next page
-      //   window.location.href = "options.html";
-      // }
+      // Load the values from the values script
+      //const values = remote.require('./backend/values').values;
+      let values = fs.readFileSync('./backend/values.json');
+      values = JSON.parse(values);
+
+      // Load the word script
+      const word = remote.require('./backend/word');
+
+      let data = {
+        klant_bedrijf: values["client"]["company"],
+        project_naam: 'PROJECT NAAM' + 'OFFERTE NUMMER',
+        offerte_datum: values["invoice_date"],
+
+        // klant_bedrijf: '',
+        klant_aanhef: values["client"]["salutation"],
+        klant_volledige_naam: values["client"]["firstname"] + " " + values["client"]["insertion"] + " " + values["client"]["lastname"],
+        klant_adres: values["client"]["street"],
+        klant_postcode: values["client"]["postalcode"],
+        klant_plaats: values["client"]["city"],
+
+        huidige_datum: values["invoice_date"],
+
+        offerte_onderwerp: 'PROJECT NAAM',
+        offerte_nummer: 'PROJECT NUMMER',
+        // project_naam: '',
+
+        gebasseerde_stukken: [{
+          gebasseerd_stuk: "Uw offerteaanvraag van 1 maart 2018.",
+        }, ],
+        betreffende_werkzaamheden: [{
+          betreffende_werkzaamheid: `
+            Het leveren en aanbrengen van naadloos akoestisch middelfijn spuitwerk in een dikte van circa
+            20/25 mm rechtstreeks tegen de bestaande, vlakke, luchtdichte en watervast draagkrachtige
+            ondergrond.
+          `,
+        }, ],
+
+        totaal_prijs: "€" + "TOTAAL PRIJS" + ",-",
+      }
+
+      // Generate the word document
+      let link = word.generate(values["invoice_type"], data);
+      progressBar.value = 80;
+      // Generate it again to also fill in the values from the  prologue
+      link = word.generate(values["invoice_type"], data);
+      progressBar.value = 100;
+
+      // Redirect to next page and pass the invoice filename
+      window.location.href = "output.html?invoiceFilename=" + link
+
     </script>
 
 </body>
