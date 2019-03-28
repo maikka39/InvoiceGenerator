@@ -1,51 +1,53 @@
 {
   "Onderconstructie": {
-    "Armstrong systeem compleet": 22.34,
-    "Middelspuitwerk profilen leveren": 22.34,
-    "Sto 60/27 systeem compleet geleverd": 22.34,
-    "Profielen voor rondom de plafondvelden ca 25mm hoog geschat 50%": 39.28,
-    "Schroeven en reveten": 394.28
+    "Armstrong systeem compleet": [22.34, "m2"],
+    "Middelspuitwerk profilen leveren": [22.34, "m2"],
+    "Sto 60/27 systeem compleet geleverd": [22.34, "m2"],
+    "Profielen voor rondom de plafondvelden ca 25mm hoog geschat 50%": [22.34, "m2"],
+    "Schroeven en reveten": [22.34, ""]
   },
   "Materiaal": {
-    "Beplating": 284.21,
-    "Luchtdichte tape": 23.11,
-    "Nadenband en reparatiemiddel": 23.34,
-    "Akoestische spuitpleister Silentplaster": 85.82,
-    "Afplakrommel": 934.54
+    "Beplating": [22.34, "m2"],
+    "Luchtdichte tape": [22.34, "m1"],
+    "Nadenband en reparatiemiddel": [22.34, "m2"],
+    "Akoestische spuitpleister Silentplaster": [22.34, "m2"],
+    "Afplakrommel": [22.34, "m2"]
   },
   "Montage ": {
-    "Onderconstructie aanbrengen incl beplating": 34.21,
-    "Transport, sparingen en diverse kleine plafonds": 34.21,
-    "Toeslag eilanden op verschillende locaties": 34.13
+    "Onderconstructie aanbrengen incl beplating": [22.34, "h"],
+    "Transport, sparingen en diverse kleine plafonds": [22.34, ""],
+    "Toeslag eilanden op verschillende locaties": [22.34, ""]
   },
   "Spuiten ": {
-    "Plafond spuitklaar maken": 64.53,
-    "Ingeschat profielen": 39.81,
-    "Spuiten inclusief afplakken": 48.66
+    "Plafond spuitklaar maken": [22.34, "m2"],
+    "Ingeschat profielen": [22.34, "m2"],
+    "Spuiten inclusief afplakken": [22.34, "m2"]
   },
   "Stukadoren": {
-    "Geheel met Basic en Top": 64.53,
-    "Steiger monteren en demonteren": 39.81
+    "Geheel met Basic en Top": [22.34, "m2"],
+    "Steiger monteren en demonteren": [22.34, "m2"]
   },
   "Bijkomende kosten": {
-    "Projectbegeleiding": 43.97,
-    "Steiger transport": 59.82
+    "Projectbegeleiding": [22.34, "h"],
+    "Steiger transport": [22.34, ""]
   },
   "Acosorb DC3 25 mm": {
-    "Materiaal Acorsorb DC3 25 mm (ingeschat)": 43.97,
-    "Afplakmateriaal": 59.82,
-    "Stukstopprofielen": 59.82
+    "Materiaal Acorsorb DC3 25 mm (ingeschat)": [22.34, "m2"],
+    "Afplakmateriaal": [22.34, "m1"],
+    "Stukstopprofielen": [22.34, "m2"]
   },
   "Sto levering": {
-    "Profielband leveren": 43.97,
-    "Sto beplating": 59.82,
-    "Sto Fix (verbruik 0,5 kg m2)": 59.82,
-    "Sto Basic (verbruik 2 kg m2)": 59.82,
-    "Sto Finisch (verbruik 3 kg m2)": 59.82
+    "Profielband leveren": [22.34, ""],
+    "Sto beplating": [22.34, "m2"],
+    "Sto Fix (verbruik 0,5 kg m2)": [22.34, "kg"],
+    "Sto Basic (verbruik 2 kg m2)": [22.34, "kg"],
+    "Sto Finisch (verbruik 3 kg m2)": [22.34, "kg"]
   },
   "Diverse": {
-    "Steiger plaatsen": 43.97,
-    "Extra afplakken": 59.82,
-    "Projectkosten": 59.82
+    "Steiger plaatsen": [22.34, ""],
+    "Extra afplakken": [22.34, ""],
+    "Projectkosten": [22.34, ""]
+  },
+  "Overig": {
   }
 }
