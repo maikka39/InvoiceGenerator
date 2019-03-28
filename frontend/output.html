@@ -39,10 +39,7 @@
     } = require('electron');
 
     // Get the values
-    // const values = remote.require('./backend/values').values;
-    let values = {};
-    values["client"] = {};
-    values["client"]["company"] = "Test3";
+    const values = remote.require('./backend/values').get();
 
 
     // Set the date variable

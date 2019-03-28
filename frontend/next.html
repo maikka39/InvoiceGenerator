@@ -33,14 +33,10 @@
         remote
       } = require('electron');
 
-      const fs = remote.require('fs');
-
       let progressBar = document.getElementById('progress_bar');
 
       // Load the values from the values script
-      //const values = remote.require('./backend/values').values;
-      let values = fs.readFileSync('./backend/values.json');
-      values = JSON.parse(values);
+      const values = remote.require('./backend/values').get();
 
       // Load the word script
       const word = remote.require('./backend/word');

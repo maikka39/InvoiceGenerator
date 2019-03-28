@@ -66,6 +66,13 @@ module.exports = {
     // Log al current values
     console.log(values);
   },
+  /**
+   * Return all the currently set values
+   */
+  get: function () {
+    // Send back all the values
+    return values;
+  },
   save: function () {
     // Convert values to JSON
     let data = JSON.stringify(values, null, 2);
