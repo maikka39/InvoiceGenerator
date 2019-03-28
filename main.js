@@ -14,6 +14,7 @@ function createWindow() {
     height: 600
   })
 
+  // Remove the top menu
   win.setMenu(null);
 
   // and load the main.html of the app.
