@@ -23,7 +23,7 @@
   "homepage": "https://github.com/maikka39/InvoiceGenerator#readme",
   "devDependencies": {
     "electron": "^3.0.0",
-    "electron-builder": "^20.38.0"
+    "electron-builder": "^20.39.0"
   },
   "build": {
     "appId": "tk.maikka39.invoicegenerater",
