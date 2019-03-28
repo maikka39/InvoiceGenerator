@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IG - Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="./js/font-awesome.js"></script>
+    <script type="text/javascript" src="./js/bulma-accordion.min.js"></script>
+    <link rel="stylesheet" href="./css/options.css">
+    <link rel="stylesheet" href="./css/bulma-accordion.min.css">
+    <link rel="stylesheet" href="./css/bulma-checkradio.min.css">
+    <link rel="stylesheet" href="./css/bulma.css">
+</head>
+
+<body class="is-unselectable">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Welkom en groet
+                </h1>
+                <h2 class="subtitle">
+                    Voeg hier een voorwoord en nawoord toe
+                </h2>
+            </div>
+        </div>
+    </section>
+    <div class="container template-item has-margin-top-10">
+        <section class="accordions" id="data">
+            <article class="accordion" id="prologue">
+                <div class="accordion-header toggle">
+                    <p style="margin: auto;">Voorwoord</p>
+                </div>
+                <div style="overflow-x: scroll" class="accordion-body">
+                    <div class="accordion-content">
+                       <textarea class="input" style="height: 15em;"></textarea>
+                    </div>
+                </div>
+            </article>
+            <article class="accordion" id="epilogue">
+                <div class="accordion-header toggle">
+                    <p style="margin: auto;">Nawoord</p>
+                </div>
+                <div style="overflow-x: scroll" class="accordion-body">
+                    <div class="accordion-content">
+                       <textarea class="input" style="height: 11em;"></textarea>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <div class="container is-centered">
+            <a class="button is-danger is-rounded has-margin-top-10" onclick="saveData()"><i class="fas fa-save"></i> &nbsp; Opslaan</a>
+        </div>
+    </div>
+
+    </div>
+    <script>
+      // Make all accordions work with the bulma library
+      let accordions = bulmaAccordion.attach();
+
+      // Connect to the backend
+      const {
+        remote
+      } = require('electron');
+
+      // Import the file library
+      const fs = remote.require('fs');
+
+      // Load the values script
+      const values = remote.require('./backend/values');
+
+      // Read the prologue file
+      fs.readFile('./backend/databases/prologue.json', (err, data) => {
+        // If there is an error, throw it
+        if (err) throw err;
+        // Parse the json file
+        let prologue = JSON.parse(data);
+
+        // Get the element with all the data
+        let el = document.getElementById('data')
+
+        // Loop through all the fields in de element
+        for (let i = 0; i < el.children.length; i++) {
+          // Get the title of this part
+          let title = el.children[i].id;
+          // Set the text of the field
+          el.children[i].children[1].children[0].children[0].value = prologue[title];
+        }
+
+      });
+
+      /**
+       * Save the prologue to the backend.
+       */
+      function saveData() {
+        // Get the element with all the data
+        let el = document.getElementById('data')
+
+        // Declare the prologue variable
+        let prologue = {};
+
+        // Loop through all the fields in de element
+        for (let i = 0; i < el.children.length; i++) {
+          // Get the title from the id
+          let title = el.children[i].id;
+          // Get the text of the field
+          let text = el.children[i].children[1].children[0].children[0].value;
+          // Save the data to the prologue
+          prologue[title] = text;
+          console.log(text);
+        }
+
+        // Send the prologue to the backend
+        values.set("prologue", prologue);
+
+        // Go to the next page
+        window.location.href = "options.html";
+      }
+    </script>
+</body>
+
+</html>
