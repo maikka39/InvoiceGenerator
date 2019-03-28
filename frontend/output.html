@@ -22,7 +22,7 @@
                 </h2>
                 <div class="level">
                     <div class="level-item">
-                        <button class="button is-full-width has-margin-right-20"><i class="fas fa-download"></i> &nbsp; Download Offerte</button>
+                        <button class="button is-full-width has-margin-right-20" onclick="downloadInvoice()"><i class="fas fa-download"></i> &nbsp; Download Offerte</button>
                     </div>
                     <div class="level-item">
                         <button disabled class="button is-full-width has-margin-left-20"><i class="fas fa-download"></i> &nbsp; Download Calculatiesheet</button>
@@ -31,6 +31,72 @@
             </div>
         </div>
     </section>
+
+    <script type="text/javascript">
+    // Connect to the backend
+    const {
+      remote
+    } = require('electron');
+
+    // Get the values
+    // const values = remote.require('./backend/values').values;
+    let values = {};
+    values["client"] = {};
+    values["client"]["company"] = "Test3";
+
+
+    // Set the date variable
+    let date = new Date();
+
+      /**
+       * Get the URL parameters
+       * @return {Object} - The URL parameters
+       */
+      function getParams () {
+        // Create a dictionary for the parameters
+        var params = {};
+        // Create a parser element
+        var parser = document.createElement('a');
+        // Link it to this page
+        parser.href = window.location.href;
+        // Get the second substring
+        var query = parser.search.substring(1);
+        // Split it on the different variables
+        var vars = query.split('&');
+        // Loop through them
+        for (var i = 0; i < vars.length; i++) {
+          // Split the variable at the '=' sign
+          var pair = vars[i].split('=');
+          // Create an entry in the params variable for the variable
+          params[pair[0]] = decodeURIComponent(pair[1]);
+        }
+        // Send back the parameters
+        return params;
+      };
+
+      function download(link, filename) {
+        var element = document.createElement('a');
+        element.setAttribute('href', link);
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+      }
+
+      /**
+       * Upload the invoice to the user
+       */
+      function downloadInvoice() {
+        // Upload the file to the user
+        // window.location.href = "../output/" + getParams()["invoiceFilename"];
+        download("../output/" + getParams()["invoiceFilename"], "offerte_" + date.getFullYear() + "_" + date.getMonth() + "_" + date.getDate() + "_" + values["client"]["company"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx")
+
+      }
+    </script>
 
 </body>
 
