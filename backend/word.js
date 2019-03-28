@@ -13,7 +13,7 @@ module.exports = {
     let file_path = template_name + ".docx"
 
     // Load the template file as binary
-    var content = fs.readFileSync(path.resolve(__dirname, file_path), 'binary');
+    var content = fs.readFileSync(path.resolve(__dirname, "../templates", file_path), 'binary');
 
     // Load the binary as a zip file
     var zip = new JSZip(content);
