@@ -333,7 +333,7 @@ function saveOptions() {
   values.set("products", products);
 
   // Go to the next page
-  window.location.href = "next.html";
+  window.location.href = "generate.html";
 }
 
 /**
