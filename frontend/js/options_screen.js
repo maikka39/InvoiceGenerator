@@ -38,7 +38,7 @@ fs.readFile('./backend/databases/clients.json', (err, data) => {
 // Read the tenets file in a synchronous manner
 let data = fs.readFileSync('./backend/databases/tenets.json');
 // Parse the data and get the dynamic part
-let tenets = JSON.parse(data)["dynamic"];
+let tenets = JSON.parse(data)["Dynamisch"];
 // Get the template tenet element
 let tenetel = document.getElementById('tenet');
 

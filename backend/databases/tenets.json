@@ -1,5 +1,5 @@
 {
-  "static": {
+  "Statisch": {
     "Parkeren": "Eventuele parkeerkosten worden netto doorberekend, we hebben groot zwaar materieel en hebben 1 parkeerplek nodig voor ingang.",
     "Facturering": "Facturering materiaal bij levering circa 60% en arbeid naar rato uitvoering.",
     "Betalingstermijn": "Betalingstermijn is 30 dagen.",
@@ -13,7 +13,7 @@
     "Oplevering": "Oplevering na onze laatste afwerklaag per ruimte.",
     "Betalingstermijn": "Betalingstermijn is 30 dagen."
   },
-  "dynamic": {
+  "Dynamisch": {
     "Stijger": "Steiger hoger dan 3.30m wordt verzorgd door klant",
     "Extra parkeren": "Eventuele parkeerkosten worden doorberekend, we hebben groot zwaar materieel en hebben 1 parkeerplek nodig voor ingang.",
     "Container": "Bouwafval wordt in beschikbaar gestelde container gedeponeerd."

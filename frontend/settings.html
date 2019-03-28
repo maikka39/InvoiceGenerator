@@ -28,115 +28,77 @@
         </div>
     </section>
     <div class="container template-item has-margin-top-10">
-        <section class="accordions" id="product_list">
-            <article class="accordion hidden">
+        <section class="accordions" id="accordions">
+            <article class="accordion">
                 <div class="accordion-header toggle">
-                    <p style="margin: auto;">Algemene uitganspunten</p>
+                    <p style="margin: auto;">Uitganspunten</p>
                 </div>
-                <div style="overflow-x: scroll" class="accordion-body">
+                <div style="overflow-x: scroll; overflow-y: auto" class="accordion-body">
                     <div class="accordion-content">
                         <div class="columns">
-                            <div class="column is-narrow">
+                            <div class="column is-narrow" id="tenet_name">
                                 <label class="label">Naam</label>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
+                                <label>Caterogie</label>
                                 <div class="row has-margin-bottom-10">
                                     <input type="text" class="input is-dark">
                                 </div>
                             </div>
-                            <div class="column">
+                            <div class="column" id="tenet_value">
                                 <label class="label">Waarde in offerte</label>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
+                                <label>&nbsp;</label>
                                 <div class="row has-margin-bottom-10">
                                     <input type="text" class="input is-dark">
                                 </div>
                             </div>
                         </div>
+                        <button class="button has-margin-left-3 has-margin-right-3 is-full-width is-danger" onclick="addItemRow(this)">Nieuw</button>
                     </div>
                 </div>
             </article>
-            <article class="accordion hidden">
+            <article class="accordion">
                 <div class="accordion-header toggle">
                     <p style="margin: auto;">Producten</p>
                 </div>
-                <div style="overflow-x: scroll" class="accordion-body">
+                <div style="overflow-x: scroll; overflow-y: auto" class="accordion-body">
                     <div class="accordion-content">
                         <div class="columns">
-                            <div class="column">
+                            <div class="column" id="product_names">
                                 <label class="label">Naam</label>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
+                                <label>Caterogie</label>
                                 <div class="row has-margin-bottom-10">
                                     <input type="text" class="input is-dark">
                                 </div>
                             </div>
-                            <div class="column is-one-fifth">
+                            <div class="column is-one-fifth" id="product_price">
                                 <label class="label">Prijs</label>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
+                                <label>&nbsp;</label>
                                 <div class="row has-margin-bottom-10">
                                     <input type="text" class="input is-dark">
                                 </div>
                             </div>
-                            <div class="column is-one-fifth">
+                            <div class="column is-one-fifth" id="product_unit">
                                 <label class="label">Eenheid</label>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
-                                <div class="row has-margin-bottom-10">
-                                    <input type="text" class="input is-dark">
-                                </div>
+                                <label>&nbsp;</label>
                                 <div class="row has-margin-bottom-10">
                                     <input type="text" class="input is-dark">
                                 </div>
                             </div>
                         </div>
+                        <button class="button has-margin-left-3 has-margin-right-3 is-full-width is-danger" onclick="addItemRow(this)">Nieuw</button>
                     </div>
                 </div>
             </article>
-            <article class="accordion hidden">
+            <article class="accordion">
                 <div class="accordion-header toggle">
                     <p style="margin: auto;">Percentages</p>
                 </div>
-                <div style="overflow-x: scroll" class="accordion-body">
+                <div style="overflow-x: scroll; overflow-y: auto" class="accordion-body">
                     <div class="accordion-content">
                         <div class="columns">
                             <div class="column">
                                 <div class="row">
                                     <label class="label">Winstmarge</label>
-                                    <input type="text" class="input is-dark">
+                                    <input type="text" class="input is-dark" id="profit_margin">
                                 </div>
                             </div>
                         </div>
@@ -145,13 +107,14 @@
             </article>
         </section>
         <div class="container is-centered">
-            <a class="button is-danger is-rounded has-margin-top-10"><i class="fas fa-save"></i> &nbsp; Opslaan</a>
+            <a class="button is-danger is-rounded has-margin-top-10" onclick="saveSettings()"><i class="fas fa-save"></i> &nbsp; Opslaan</a>
         </div>
     </div>
 
     </div>
     <script>var accordions = bulmaAccordion.attach();
     </script>
+    <script src="js/settings_screen.js" charset="utf-8"></script>
 </body>
 
 </html>
