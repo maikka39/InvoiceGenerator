@@ -7,80 +7,62 @@ const Docxtemplater = require('docxtemplater');
 const fs = require('fs');
 const path = require('path');
 
-// Enter the path of the template
-let file_path = "example.docx"
+module.exports = {
+  generate: function (template_name, values) {
+    // Enter the path of the template
+    let file_path = template_name + ".docx"
 
-//Load the template file as binary
-var content = fs.readFileSync(path.resolve(__dirname, file_path), 'binary');
+    // Load the template file as binary
+    var content = fs.readFileSync(path.resolve(__dirname, file_path), 'binary');
 
-// Load the binary as a zip file
-var zip = new JSZip(content);
+    // Load the binary as a zip file
+    var zip = new JSZip(content);
 
-// Create a new document
-var doc = new Docxtemplater();
+    // Create a new document
+    var doc = new Docxtemplater();
 
-// Load the zip in the library
-doc.loadZip(zip);
+    // Load the zip in the library
+    doc.loadZip(zip);
 
-// Set the values which should be replaced in the template
-doc.setData({
-  klant_bedrijf: 'Blend4',
-  project_naam: '20184848 Plafond Lounge Roosendaal',
-  offerte_datum: '5 maart 2018',
+    // Set the values which should be replaced in the template
+    doc.setData(values);
 
-  // klant_bedrijf: '',
-  klant_aanhef: 'de heer',
-  klant_volledige_naam: 'Jeroen Franken',
-  klant_adres: 'Boulevard 62',
-  klant_postcode: '4701 EW',
-  klant_plaats: 'ROOSENDAAL',
+    // Try is to prevent the program from closing is the rendering process fails
+    try {
+      // Render the document (replace all occurences of {var} by var_value)
+      doc.render()
+    } catch (error) {
+      // If there is an error,
+      // Get the values
+      var e = {
+        message: error.message,
+        name: error.name,
+        stack: error.stack,
+        properties: error.properties,
+      }
+      // And log them as JSON
+      console.log(JSON.stringify({
+        error: e
+      }));
+      // Then throw an error which contains additional information (it contains a property object).
+      throw error;
+    }
 
-  huidige_datum: 'vrijdag 5 maart 2018',
+    // Get the rendered word file as a nodejs buffer
+    var buf = doc.getZip()
+      .generate({
+        type: 'nodebuffer'
+      });
 
-  offerte_onderwerp: 'Offerte akoestische werkzaamheden',
-  offerte_nummer: '7346552',
-  // project_naam: '',
+    // Get the current date
+    let date = new Date();
+    // Create an output file_name
+    let output_file = "invoice_" + date.getFullYear() + "_" + date.getMonth() + "_" + date.getDate() + "_" + values["klant_bedrijf"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx";
 
-  gebasseerde_stukken: [{
-    gebasseerd_stuk: "Uw offerteaanvraag van 1 maart 2018.",
-  }, ],
-  betreffende_werkzaamheden: [{
-    betreffende_werkzaamheid: `
-      Het leveren en aanbrengen van naadloos akoestisch middelfijn spuitwerk in een dikte van circa
-      20/25 mm rechtstreeks tegen de bestaande, vlakke, luchtdichte en watervast draagkrachtige
-      ondergrond.
-    `,
-  }, ],
+    // Write the file to the computer
+    fs.writeFileSync(path.resolve(__dirname, "../output", output_file), buf);
 
-  totaal_prijs: '€6913,-',
-});
-
-// Try is to prevent the program from closing is the rendering process fails
-try {
-  // Render the document (replace all occurences of {var} by var_value)
-  doc.render()
-} catch (error) {
-  // If there is an error,
-  // Get the values
-  var e = {
-    message: error.message,
-    name: error.name,
-    stack: error.stack,
-    properties: error.properties,
+    // Return the path to the outputed file
+    return path.resolve(__dirname, output_file);
   }
-  // And log them as JSON
-  console.log(JSON.stringify({
-    error: e
-  }));
-  // Then throw an error which contains additional information (it contains a property object).
-  throw error;
 }
-
-// Get the rendered word file as a nodejs buffer
-var buf = doc.getZip()
-  .generate({
-    type: 'nodebuffer'
-  });
-
-// Write the file to the computer
-fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
