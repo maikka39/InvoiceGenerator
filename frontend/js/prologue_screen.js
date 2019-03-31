@@ -49,7 +49,7 @@ function saveData() {
     // Get the text of the field
     let text = el.children[i].children[1].children[0].children[0].value;
     // Save the data to the prologue
-    prologue[title] = text;
+    prologue[title] = "<w:p><w:r><w:t>" + text.replace(/(?:\r\n|\r|\n)/g, "&#xD;") + "</w:t></w:r></w:p>";
     console.log(text);
   }
 
