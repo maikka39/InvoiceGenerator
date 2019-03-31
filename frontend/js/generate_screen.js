@@ -3,17 +3,98 @@ const {
   remote
 } = require('electron');
 
+// Import the 'fs' library
+const fs = remote.require('fs');
+
 let progressBar = document.getElementById('progress_bar');
 
 // Load the values from the values script
-const values = remote.require('./backend/values').get();
+//const values = remote.require('./backend/values').get();
+// const dfghnj = remote.require('./backend/values').save();
 
-// Load the word script
-const word = remote.require('./backend/word');
+let vdata = fs.readFileSync('./backend/values.json');
+let values = JSON.parse(vdata);
 
+// Read the tenets file
+let tdata = fs.readFileSync('./backend/databases/tenets.json');
+// Parse the JSON data
+let tenets = JSON.parse(tdata);
+
+// Read the products file
+let pdata = fs.readFileSync('./backend/databases/products.json');
+// Parse the JSON data
+let products = JSON.parse(pdata);
+
+// Declare the tenetList
+let tenetList = [];
+
+// For every tenet in the tenets object
+for (let tenet in tenets["Statisch"]) {
+  // Check if it exists
+  if (tenets["Statisch"].hasOwnProperty(tenet)) {
+    // Then create an object for it and add it to the tenet list
+    tenetList.push({
+      "uitgangspunt": tenets["Statisch"][tenet]
+    });
+  }
+}
+
+let dynamicTenets = {};
+
+// Loop through all products
+for (let i = 0; i < values["products"].length; i++) {
+  // Loop through all their tenets
+  for (let tenet in values["products"][i]["tenets"]) {
+    // Check if the tenet exists
+    if (values["products"][i]["tenets"].hasOwnProperty(tenet)) {
+      // If the tenet is selected
+      if (values["products"][i]["tenets"][tenet]) {
+        // Add it to the dynamicTenets object
+        dynamicTenets[tenet] = tenets["Dynamisch"][tenet];
+      }
+    }
+  }
+}
+
+// For every tenet in the selected dynamic tenets
+for (let tenet in dynamicTenets) {
+  // Check if the tenet exists
+  if (dynamicTenets.hasOwnProperty(tenet)) {
+    // Then create an object for it and add it to the tenet list
+    tenetList.push({
+      "uitgangspunt": dynamicTenets[tenet]
+    });
+  }
+}
+
+
+let price = 0;
+
+// Loop through all products
+for (let i = 0; i < values["products"].length; i++) {
+  let pamount = parseInt(values["products"][i]["amount"]);
+  let pprice = 0;
+
+  for (var category in products) {
+    if (products.hasOwnProperty(category)) {
+      for (var product in products[category]) {
+        if (products[category].hasOwnProperty(product)) {
+          if (product == values["products"][i]["name"]) {
+            pprice = products[category][product][0];
+          }
+        }
+      }
+    }
+  }
+
+  price += pprice * pamount
+}
+
+
+// Declare the data for the word renderer
 let data = {
   klant_bedrijf: values["client"]["company"],
-  project_naam: 'PROJECT NAAM' + 'OFFERTE NUMMER',
+  project_naam: values["project_title"] + " - " + values["project_number"],
   offerte_datum: values["invoice_date"],
 
   // klant_bedrijf: '',
@@ -25,23 +106,22 @@ let data = {
 
   huidige_datum: values["invoice_date"],
 
-  offerte_onderwerp: 'PROJECT NAAM',
-  offerte_nummer: 'PROJECT NUMMER',
-  // project_naam: '',
+  offerte_onderwerp: values["project_title"],
+  offerte_nummer: values["project_number"],
 
-  gebasseerde_stukken: [{
-    gebasseerd_stuk: "Uw offerteaanvraag van 1 maart 2018.",
-  }, ],
-  betreffende_werkzaamheden: [{
-    betreffende_werkzaamheid: `
-      Het leveren en aanbrengen van naadloos akoestisch middelfijn spuitwerk in een dikte van circa
-      20/25 mm rechtstreeks tegen de bestaande, vlakke, luchtdichte en watervast draagkrachtige
-      ondergrond.
-    `,
-  }, ],
+  inleiding: values["prologue"]["prologue"],
+  slot: values["prologue"]["epilogue"],
 
-  totaal_prijs: "€" + "TOTAAL PRIJS" + ",-",
+  offerte_aanvraag_datum: values["request_date"],
+  offerte_aanvraag_datum_voluit: values["request_date_text"],
+
+  uitgangspunten: tenetList,
+
+  totaal_prijs: "€" + price + ",-"
 }
+
+// Load the word script
+const word = remote.require('./backend/word');
 
 // Generate the word document
 let link = word.generate(values["invoice_type"], data);
@@ -51,4 +131,5 @@ link = word.generate(values["invoice_type"], data);
 progressBar.value = 100;
 
 // Redirect to next page and pass the invoice filename
-window.location.href = "output.html?invoiceFilename=" + link
+//window.location.href = "output.html?invoiceFilename=" + link
+// remote.require('process').exit(0);
