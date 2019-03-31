@@ -57,7 +57,7 @@ module.exports = {
     // Get the current date
     let date = new Date();
     // Create an output file_name
-    let output_file = "invoice_" + date.getFullYear() + "_" + date.getMonth() + "_" + date.getDate() + "_" + values["klant_bedrijf"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx";
+    let output_file = "invoice_" + date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" + values["klant_bedrijf"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx";
 
     // Write the file to the computer
     fs.writeFileSync(path.resolve(__dirname, "../output", output_file), buf);

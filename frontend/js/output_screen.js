@@ -68,6 +68,6 @@ function download(link, filename) {
 function downloadInvoice() {
   // Upload the file to the user
   // window.location.href = "../output/" + getParams()["invoiceFilename"];
-  download("../output/" + getParams()["invoiceFilename"], "offerte_" + date.getFullYear() + "_" + date.getMonth() + "_" + date.getDate() + "_" + values["client"]["company"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx")
+  download("../output/" + getParams()["invoiceFilename"], "offerte_" + date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" + values["client"]["company"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx")
 
 }
