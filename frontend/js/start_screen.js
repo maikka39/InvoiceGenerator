@@ -44,7 +44,7 @@ function nextScreen() {
   values.set('project_number', projectNumber);
   values.set('request_date', requestDate);
 
-  values.set('request_date_text', parseInt(requestDate.split("-")[2]).toString() + months[parseInt(requestDate.split("-")[1])] + requestDate.split("-")[0]);
+  values.set('request_date_text', parseInt(requestDate.split("-")[2]).toString() + " " + months[parseInt(requestDate.split("-")[1])] + " " + requestDate.split("-")[0]);
 
   // Redirect the user to the next page
   window.location.href = "template.html";
