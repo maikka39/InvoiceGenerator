@@ -40,7 +40,7 @@ dates = {
   day: date.getDate(),
   weekday_string: days[date.toString().substring(0, 3)],
   month: date.getMonth(),
-  month_string: months[date.getMonth()],
+  month_string: months[date.getMonth() + 1],
   year: date.getFullYear()
 }
 
