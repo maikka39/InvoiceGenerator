@@ -36,10 +36,10 @@ let date = new Date();
 
 // Calculate all the values
 dates = {
-  date: date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString(),
+  date: date.getDate().toString() + "-" + (date.getMonth() + 1).toString() + "-" + date.getFullYear().toString(),
   day: date.getDate(),
   weekday_string: days[date.toString().substring(0, 3)],
-  month: date.getMonth(),
+  month: date.getMonth() + 1,
   month_string: months[date.getMonth() + 1],
   year: date.getFullYear()
 }
