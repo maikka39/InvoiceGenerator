@@ -94,6 +94,7 @@ let odata = fs.readFileSync(path.join(__dirname, '../backend/databases/other.jso
 let other = JSON.parse(odata);
 
 price += price * 0.01 * other["profit_margin"];
+price = Math.ceil(price);
 
 
 // Declare the data for the word renderer
