@@ -20,15 +20,15 @@ let pdata = fs.readFileSync('./backend/databases/products.json');
 let products = JSON.parse(pdata);
 
 // Loop through all catergories
-for (let catergory in products) {
+for (let category in products) {
   // Make sure it exists
-  if (products.hasOwnProperty(catergory)) {
-    // Create a clone of the catergory label and the other columns
+  if (products.hasOwnProperty(category)) {
+    // Create a clone of the category label and the other columns
     let ncln = productNames.children[1].cloneNode(true);
     let pcln = productPrice.children[1].cloneNode(true);
     let ucln = productUnit.children[1].cloneNode(true);
-    // Set the text to the catergory name
-    ncln.innerText = catergory;
+    // Set the text to the category name
+    ncln.innerText = category;
 
     // Append the editted clone the the parent
     productNames.appendChild(ncln);
@@ -36,17 +36,17 @@ for (let catergory in products) {
     productUnit.appendChild(ucln);
 
     // Loop through all products
-    for (let product in products[catergory]) {
+    for (let product in products[category]) {
       // Make sure it exists
-      if (products[catergory].hasOwnProperty(product)) {
+      if (products[category].hasOwnProperty(product)) {
         // Create a clone of the products
         let nccln = productNames.children[2].cloneNode(true);
         let pccln = productPrice.children[2].cloneNode(true);
         let uccln = productUnit.children[2].cloneNode(true);
-        // Set the text to the catergory name and fill in the price and unit
+        // Set the text to the category name and fill in the price and unit
         nccln.children[0].value = product;
-        pccln.children[0].value = products[catergory][product][0];
-        uccln.children[0].value = products[catergory][product][1];
+        pccln.children[0].value = products[category][product][0];
+        uccln.children[0].value = products[category][product][1];
         // Append the editted clone the the parent
         productNames.appendChild(nccln);
         productPrice.appendChild(pccln);
@@ -75,29 +75,29 @@ let tdata = fs.readFileSync('./backend/databases/tenets.json');
 let tenets = JSON.parse(tdata);
 
 // Loop through all catergories
-for (let catergory in tenets) {
+for (let category in tenets) {
   // Make sure it exists
-  if (tenets.hasOwnProperty(catergory)) {
-    // Create a clone of the catergory label and the other columns
+  if (tenets.hasOwnProperty(category)) {
+    // Create a clone of the category label and the other columns
     let tncln = tenetName.children[1].cloneNode(true);
     let tpcln = tenetValue.children[1].cloneNode(true);
-    // Set the text to the catergory name
-    tncln.innerText = catergory;
+    // Set the text to the category name
+    tncln.innerText = category;
 
     // Append the editted clone the the parent
     tenetName.appendChild(tncln);
     tenetValue.appendChild(tpcln);
 
     // Loop through all tenets
-    for (let tenet in tenets[catergory]) {
+    for (let tenet in tenets[category]) {
       // Make sure it exists
-      if (tenets[catergory].hasOwnProperty(tenet)) {
+      if (tenets[category].hasOwnProperty(tenet)) {
         // Create a clone of the tenets
         let tnccln = tenetName.children[2].cloneNode(true);
         let tpccln = tenetValue.children[2].cloneNode(true);
-        // Set the text to the catergory name and fill in the price and unit
+        // Set the text to the category name and fill in the price and unit
         tnccln.children[0].value = tenet;
-        tpccln.children[0].value = tenets[catergory][tenet];
+        tpccln.children[0].value = tenets[category][tenet];
         // Append the editted clone the the parent
         tenetName.appendChild(tnccln);
         tenetValue.appendChild(tpccln);
