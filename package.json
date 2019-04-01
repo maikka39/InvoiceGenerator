@@ -1,22 +1,31 @@
 {
-  "name": "invoicegenerater",
+  "name": "invoicegenerator",
+  "productName": "InvoiceGenerator",
   "version": "0.0.1",
   "description": "A program to generate invoices from a template",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/icon.icns --prune=true --out=dist",
+    "package-win": "electron-packager . invoicegenerator --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/icon.ico --prune=true --out=dist --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"InvoiceGenerator\"",
+    "package-linux": "electron-packager . invoicegenerator --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/icon.png --prune=true --out=dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maikka39/InvoiceGenerator.git"
   },
-  "author": "",
+  "author": "Maik de Kruif",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maikka39/InvoiceGenerator/issues"
   },
   "homepage": "https://github.com/maikka39/InvoiceGenerator#readme",
   "devDependencies": {
-    "electron": "^3.0.0"
+    "electron": "^3.0.0",
+    "electron-packager": "^13.1.1"
+  },
+  "dependencies": {
+    "docxtemplater": "^3.9.7",
+    "jszip": "^2.6.1"
   }
 }

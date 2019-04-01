@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InvoiceGenerator - Sjabloon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/template.css">
+    <link rel="stylesheet" href="./css/bulma.css">
+</head>
+
+<body class="is-unselectable">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Sjabloon
+                </h1>
+                <h2 class="subtitle">
+                    Kies een van onderstaande bestaande layouts
+                </h2>
+            </div>
+        </div>
+    </section>
+    <div class="columns has-text-centered has-margin-top-20">
+        <div class="column has-cursor-pointer template-item" name="Eleganza" onclick="selectTemplate(this)">
+                    <h1 class="title is-5">Eleganza</h1>
+                    <img class="is-centered" src="./img/template.png" alt="template" width="200" class="image">
+        </div>
+        <div class="column has-cursor-pointer template-item has-margin-top-10" name="Acosorb" onclick="selectTemplate(this)">
+                    <h1 class="title is-5">Acosorb</h1>
+                    <img class="is-centered" src="./img/template_aco.png" alt="template" width="200" class="image">
+        </div>
+        <div class="column has-cursor-pointer template-item has-margin-top-10" name="Sto" onclick="selectTemplate(this)">
+                    <h1 class="title is-5">Sto</h1>
+                    <img class="is-centered" src="./img/template-anders.png" alt="template" width="200" class="image">
+        </div>
+
+    </div>
+    <script src="js/template_screen.js" charset="utf-8"></script>
+</body>
+
+</html>

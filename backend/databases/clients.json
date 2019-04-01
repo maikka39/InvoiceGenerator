@@ -1,0 +1,13 @@
+{
+  "Voorbeeld": {
+    "company": "Voorbeeld",
+    "salutation": "De heer",
+    "firstname": "Jan",
+    "insertion": "de",
+    "lastname": "Beer",
+    "email": "jan.de.beer@voorbeeld.nl",
+    "street": "Timboektoelaan 24",
+    "postalcode": "4810 TB",
+    "city": "Timboektoe"
+  }
+}

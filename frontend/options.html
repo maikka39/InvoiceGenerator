@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InvoiceGenerator - Producten</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="./js/font-awesome.js"></script>
+    <script type="text/javascript" src="./js/bulma-accordion.min.js"></script>
+    <link rel="stylesheet" href="./css/options.css">
+    <link rel="stylesheet" href="./css/bulma-accordion.min.css">
+    <link rel="stylesheet" href="./css/bulma-checkradio.min.css">
+    <link rel="stylesheet" href="./css/bulma.css">
+    <style media="screen">
+        .hidden {
+            display: none !important;
+        }
+
+        .perm_hidden {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body class="is-unselectable">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Opties
+                </h1>
+                <h2 class="subtitle">
+                    Kies en vul in wat voor deze offerte geldt
+                </h2>
+            </div>
+        </div>
+    </section>
+    <div class="columns has-margin-top-20">
+        <div class="column template-item is-one-third">
+            <div class="column-content has-margin-left-40 has-margin-right-40">
+                <div class="level">
+                    <div class="level-left">
+                        <h1 class="title is-5">Klant</h1>
+                    </div>
+                    <div class="level-right">
+                        <div class="dropdown is-hoverable">
+                            <div class="dropdown-trigger">
+                                <button class="button is-danger has-cursor-pointer is-small is-rounded"><i
+                                        class="fas fa-folder-open"></i> &nbsp;
+                                    Open &nbsp; <i class="fa fa-angle-down"></i></button>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item" onclick="selectSavedClient(this.children[0].innerText)"
+                                        style="cursor: pointer;">
+                                        <a>Bedrijfsnaam</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form name="setCustomer" id="setCustomer" onsubmit="return submitForm(this);">
+                    <div class="field">
+                        <label class="label">Bedrijf</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="company" placeholder="Bedrijfsnaam"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Contactpersoon</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="salutation" placeholder="Aanhef"
+                                required>
+                            <input class="input client_field" type="text" name="firstname" placeholder="Voornaam"
+                                required>
+                            <input class="input client_field" type="text" name="insertion" placeholder="Tussenvoegsel">
+                            <input class="input client_field" type="text" name="lastname" placeholder="Achternaam"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">E-Mail</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="email" placeholder="E-Mail" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Adres</label>
+                        <div class="control">
+                            <input class="input client_field" type="text" name="street" placeholder="Straatnaam"
+                                required>
+                            <input class="input client_field" type="text" name="postalcode" placeholder="Postcode"
+                                required>
+                            <input class="input client_field" type="text" name="city" placeholder="Plaats" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="button is-primary">Opslaan</button>
+                </form>
+            </div>
+        </div>
+        <div class="column has-margin-left-40 has-margin-right-40 template-item has-margin-top-10">
+            <h1 class="title is-5">Producten</h1>
+            <section class="accordions" id="product_list">
+                <article class="accordion hidden">
+                    <div class="accordion-header toggle">
+                        <div class="image is-32x32"><img src="./img/icon.png" alt=""></div>
+                        <p>Product</p>
+                        <span class="delete" onclick="removeProduct(this)"></span>
+                    </div>
+                    <div style="overflow-x: scroll" class="accordion-body">
+                        <div class="accordion-content">
+                            <div class="field">
+                                <div class="field">
+                                    <label class="label">Hoeveelheid</label>
+                                    <div class="control">
+                                        <input class="input" placeholder="Aantal" min="0" value="1" type="number">
+                                    </div>
+                                </div>
+                                <p class="title is-6">Door de klant wordt geleverd:</p>
+                                <input class="is-checkradio is-block is-danger setID" type="checkbox"
+                                    name="exampleCheckbox" id="tenet">
+                                <label class="setFor"></label>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <article class="new button is-primary is-full-width has-text-centered" onclick="chooseProduct()">
+                <h1 class="title is-6" style="color: white;">Nieuw +</h1>
+            </article>
+        </div>
+    </div>
+    <div class="hero is-primary">
+        <div class="hero-body">
+            <button class="button is-pulled-right is-light is-rounded has-margin-right-40 is-medium is-outlined" onclick="saveOptions()">Next</button>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="product_popup">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Producten</p>
+                <button class="delete" aria-label="close" onclick="document.getElementById('product_popup').classList.remove('is-active')"></button>
+            </header>
+            <section class="modal-card-body" id="popup_products">
+              <h1 class="title is-5 has-text-centered">Categorie</h1>
+              <a style="cursor: pointer" class="level">
+                  <div class="level-item" onclick="addProduct(this)">
+                      <span></span>
+                  </div>
+              </a>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-rounded" onclick="document.getElementById('product_popup').classList.remove('is-active')">Annuleren</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="./js/options_screen.js" charset="utf-8"></script>
+</body>
+
+</html>

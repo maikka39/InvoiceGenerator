@@ -1,0 +1,15 @@
+.template-item {
+    border: 3px solid blueviolet;
+    margin: auto 4%;
+    border-radius: 8px;
+    background: inherit;
+    transition: 0.3s;
+}
+
+.template-item:hover {
+    background: blueviolet;
+}
+
+.template-item:hover h1 {
+    color: white;
+}

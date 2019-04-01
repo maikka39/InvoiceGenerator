@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InvoiceGenerator - Instellingen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="./js/font-awesome.js"></script>
+    <script type="text/javascript" src="./js/bulma-accordion.min.js"></script>
+    <link rel="stylesheet" href="./css/options.css">
+    <link rel="stylesheet" href="./css/bulma-accordion.min.css">
+    <link rel="stylesheet" href="./css/bulma-checkradio.min.css">
+    <link rel="stylesheet" href="./css/bulma.css">
+</head>
+
+<body class="is-unselectable">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Opties
+                </h1>
+                <h2 class="subtitle">
+                    Wijzig hier waardes en uitkomsten
+                </h2>
+            </div>
+        </div>
+    </section>
+    <div class="container template-item has-margin-top-10">
+        <section class="accordions" id="accordions">
+            <article class="accordion">
+                <div class="accordion-header toggle">
+                    <p style="margin: auto;">Uitganspunten</p>
+                </div>
+                <div style="overflow-x: scroll; overflow-y: auto" class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="columns">
+                            <div class="column is-narrow" id="tenet_name">
+                                <label class="label">Naam</label>
+                                <label>Categorie</label>
+                                <div class="row has-margin-bottom-10">
+                                    <input type="text" class="input is-dark">
+                                </div>
+                            </div>
+                            <div class="column" id="tenet_value">
+                                <label class="label">Waarde in offerte</label>
+                                <label>&nbsp;</label>
+                                <div class="row has-margin-bottom-10">
+                                    <input type="text" class="input is-dark">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button has-margin-left-3 has-margin-right-3 is-full-width is-danger" onclick="addItemRow(this)">Nieuw</button>
+                    </div>
+                </div>
+            </article>
+            <article class="accordion">
+                <div class="accordion-header toggle">
+                    <p style="margin: auto;">Producten</p>
+                </div>
+                <div style="overflow-x: scroll; overflow-y: auto" class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="columns">
+                            <div class="column" id="product_names">
+                                <label class="label">Naam</label>
+                                <label>Categorie</label>
+                                <div class="row has-margin-bottom-10">
+                                    <input type="text" class="input is-dark">
+                                </div>
+                            </div>
+                            <div class="column is-one-fifth" id="product_price">
+                                <label class="label">Prijs</label>
+                                <label>&nbsp;</label>
+                                <div class="row has-margin-bottom-10">
+                                    <input type="text" class="input is-dark">
+                                </div>
+                            </div>
+                            <div class="column is-one-fifth" id="product_unit">
+                                <label class="label">Eenheid</label>
+                                <label>&nbsp;</label>
+                                <div class="row has-margin-bottom-10">
+                                    <input type="text" class="input is-dark">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button has-margin-left-3 has-margin-right-3 is-full-width is-danger" onclick="addItemRow(this)">Nieuw</button>
+                    </div>
+                </div>
+            </article>
+            <article class="accordion">
+                <div class="accordion-header toggle">
+                    <p style="margin: auto;">Percentages</p>
+                </div>
+                <div style="overflow-x: scroll; overflow-y: auto" class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="row">
+                                    <label class="label">Winstmarge</label>
+                                    <input type="text" class="input is-dark" id="profit_margin">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <div class="container is-centered">
+            <a class="button is-danger is-rounded has-margin-top-10" onclick="saveSettings()"><i class="fas fa-save"></i> &nbsp; Opslaan</a>
+        </div>
+    </div>
+
+    </div>
+    <script src="js/settings_screen.js" charset="utf-8"></script>
+</body>
+
+</html>
