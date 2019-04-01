@@ -13,7 +13,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1000,
     height: 600,
-    icon: path.join(__dirname, 'icon.png')
+    icon: path.join(__dirname, 'assets/icons/icon.png')
   })
 
   // Remove the top menu
