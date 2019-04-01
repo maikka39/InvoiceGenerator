@@ -138,8 +138,104 @@ function addItemRow(el) {
   }
 }
 
+/**
+ * Save the new values to the backend.
+ */
 function saveSettings() {
-  // TODO: Save data
+  let newProducts = {}
+  let currentCategory = {}
+  let currentCatName;
+
+  for (var i = 0; i < productNames.children.length; i++) {
+    if (productNames.children[i].tagName.toLowerCase() === "label" && productNames.children[i].innerText !== "Naam") {
+      if (currentCatName) {
+        newProducts[currentCatName] = currentCategory;
+      }
+      currentCatName = productNames.children[i].innerText;
+      currentCategory = {};
+    }
+
+    if (productNames.children[i].tagName.toLowerCase() === "div") {
+      if (productNames.children[i].children[0].tagName.toLowerCase() === "input") {
+        let product = productNames.children[i].children[0].value;
+        let price = productPrice.children[i].children[0].value;
+        let unit = productUnit.children[i].children[0].value;
+
+        currentCategory[product] = [parseFloat(price), unit];
+      }
+    }
+  }
+
+  newProducts[currentCatName] = currentCategory;
+
+  // Convert back to JSON
+  let pnewData = JSON.stringify(newProducts, null, 2);
+
+  // Write it to the file
+  fs.writeFile('./backend/databases/products.json', pnewData, (err) => {
+    // If there is an error, throw it
+    if (err) throw err;
+  });
+
+
+  let tenetNames = document.getElementById('tenet_name');
+  let tenetValues = document.getElementById('tenet_value');
+
+  currentCatName = "";
+  currentCategory = {};
+
+  let newTenets = {};
+
+  for (var i = 0; i < tenetNames.children.length; i++) {
+    if (tenetNames.children[i].tagName.toLowerCase() === "label" && tenetNames.children[i].innerText !== "Naam") {
+      if (currentCatName) {
+        newTenets[currentCatName] = currentCategory;
+      }
+      currentCatName = tenetNames.children[i].innerText;
+      currentCategory = {};
+    }
+
+    if (tenetNames.children[i].tagName.toLowerCase() === "div") {
+      if (tenetNames.children[i].children[0].tagName.toLowerCase() === "input") {
+        let tenet = tenetNames.children[i].children[0].value;
+        let value = tenetValues.children[i].children[0].value;
+
+        currentCategory[tenet] = value;
+      }
+    }
+  }
+
+  newTenets[currentCatName] = currentCategory;
+
+  // Convert back to JSON
+  let tnewData = JSON.stringify(newTenets, null, 2);
+
+  // Write it to the file
+  fs.writeFile('./backend/databases/tenets.json', tnewData, (err) => {
+    // If there is an error, throw it
+    if (err) throw err;
+  });
+
+
+
+
+
+
+
+
+
+  newOther = {};
+  newOther["profit_margin"] = parseFloat(document.getElementById("profit_margin").value);
+
+  // Convert back to JSON
+  let onewData = JSON.stringify(newOther, null, 2);
+
+  // Write it to the file
+  fs.writeFile('./backend/databases/other.json', onewData, (err) => {
+    // If there is an error, throw it
+    if (err) throw err;
+  });
+
 
   // Redirect user back to the start page
   window.location.href = "start.html"
