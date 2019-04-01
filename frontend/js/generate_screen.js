@@ -134,5 +134,4 @@ link = word.generate(values["invoice_type"], data);
 progressBar.value = 100;
 
 // Redirect to next page and pass the invoice filename
-//window.location.href = "output.html?invoiceFilename=" + link
-// remote.require('process').exit(0);
+window.location.href = "output.html?invoiceFilename=" + link
