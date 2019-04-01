@@ -1,15 +1,14 @@
 {
   "name": "invoicegenerater",
+  "productName": "InvoiceGenerator",
   "version": "0.0.1",
   "description": "A program to generate invoices from a template",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "postinstall": "electron-builder install-app-deps",
-    "pack": "build --dir",
-    "dist": "build",
-    "pack-win": "build --dir --win",
-    "dist-win": "build --win"
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/icon.icns --prune=true --out=dist",
+    "package-win": "electron-packager . invoicegenerater --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/icon.ico --prune=true --out=dist --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"InvoiceGenerator\"",
+    "package-linux": "electron-packager . invoicegenerater --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/icon.png --prune=true --out=dist"
   },
   "repository": {
     "type": "git",
@@ -23,21 +22,7 @@
   "homepage": "https://github.com/maikka39/InvoiceGenerator#readme",
   "devDependencies": {
     "electron": "^3.0.0",
-    "electron-builder": "^20.39.0"
-  },
-  "build": {
-    "appId": "dev.maik.invoicegenerater",
-    "productName": "InvoiceGenerator",
-    "directories": {
-      "buildResources": "build",
-      "output": "dist",
-      "app": "./"
-    },
-    "win": {
-      "target": [
-        "zip"
-      ]
-    }
+    "electron-packager": "^13.1.1"
   },
   "dependencies": {
     "docxtemplater": "^3.9.7",
