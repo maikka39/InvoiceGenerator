@@ -9,11 +9,7 @@ const fs = remote.require('fs');
 let progressBar = document.getElementById('progress_bar');
 
 // Load the values from the values script
-//const values = remote.require('./backend/values').get();
-// const dfghnj = remote.require('./backend/values').save();
-
-let vdata = fs.readFileSync('./backend/values.json');
-let values = JSON.parse(vdata);
+const values = remote.require('./backend/values').get();
 
 // Read the tenets file
 let tdata = fs.readFileSync('./backend/databases/tenets.json');
