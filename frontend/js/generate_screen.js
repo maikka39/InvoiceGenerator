@@ -86,6 +86,13 @@ for (let i = 0; i < values["products"].length; i++) {
   price += pprice * pamount
 }
 
+// Read the other file
+let odata = fs.readFileSync('./backend/databases/other.json');
+// Parse the JSON data
+let other = JSON.parse(odata);
+
+price *= 0.01 * other["profit_margin"];
+
 
 // Declare the data for the word renderer
 let data = {
