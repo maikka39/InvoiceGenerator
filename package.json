@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/icon.icns --prune=true --out=dist",
-    "package-win": "electron-packager . invoicegenerator --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/icon.ico --prune=true --out=dist --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"InvoiceGenerator\"",
+    "package-win": "electron-packager . invoicegenerator --overwrite --asar --platform=win32 --icon=assets/icons/icon.ico --prune=true --out=dist --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"InvoiceGenerator\"",
     "package-linux": "electron-packager . invoicegenerator --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/icon.png --prune=true --out=dist"
   },
   "repository": {
