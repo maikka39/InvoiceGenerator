@@ -3,6 +3,8 @@ const {
   remote
 } = require('electron');
 
+const path = require('path');
+
 // Import the 'fs' library
 const fs = remote.require('fs');
 
@@ -15,7 +17,7 @@ let productPrice = document.getElementById('product_price');
 let productUnit = document.getElementById('product_unit');
 
 // Read the tenets file in a synchronous manner
-let pdata = fs.readFileSync('./backend/databases/products.json');
+let pdata = fs.readFileSync(path.join(__dirname, '../backend/databases/products.json'));
 // Parse the data
 let products = JSON.parse(pdata);
 
@@ -70,7 +72,7 @@ let tenetName = document.getElementById('tenet_name');
 let tenetValue = document.getElementById('tenet_value');
 
 // Read the tenets file in a synchronous manner
-let tdata = fs.readFileSync('./backend/databases/tenets.json');
+let tdata = fs.readFileSync(path.join(__dirname, '../backend/databases/tenets.json'));
 // Parse the data
 let tenets = JSON.parse(tdata);
 
@@ -114,7 +116,7 @@ tenetValue.removeChild(tenetValue.children[1]);
 
 
 // Read the 'other' file in a synchronous manner
-let odata = fs.readFileSync('./backend/databases/other.json');
+let odata = fs.readFileSync(path.join(__dirname, '../backend/databases/other.json'));
 // Parse the data
 let other = JSON.parse(odata);
 
@@ -172,7 +174,7 @@ function saveSettings() {
   let pnewData = JSON.stringify(newProducts, null, 2);
 
   // Write it to the file
-  fs.writeFile('./backend/databases/products.json', pnewData, (err) => {
+  fs.writeFile(path.join(__dirname, '../backend/databases/products.json'), pnewData, (err) => {
     // If there is an error, throw it
     if (err) throw err;
   });
@@ -211,7 +213,7 @@ function saveSettings() {
   let tnewData = JSON.stringify(newTenets, null, 2);
 
   // Write it to the file
-  fs.writeFile('./backend/databases/tenets.json', tnewData, (err) => {
+  fs.writeFile(path.join(__dirname, '../backend/databases/tenets.json'), tnewData, (err) => {
     // If there is an error, throw it
     if (err) throw err;
   });
@@ -231,7 +233,7 @@ function saveSettings() {
   let onewData = JSON.stringify(newOther, null, 2);
 
   // Write it to the file
-  fs.writeFile('./backend/databases/other.json', onewData, (err) => {
+  fs.writeFile(path.join(__dirname, '../backend/databases/other.json'), onewData, (err) => {
     // If there is an error, throw it
     if (err) throw err;
   });

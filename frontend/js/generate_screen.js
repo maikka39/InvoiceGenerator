@@ -3,21 +3,23 @@ const {
   remote
 } = require('electron');
 
+const path = require('path');
+
 // Import the 'fs' library
 const fs = remote.require('fs');
 
 let progressBar = document.getElementById('progress_bar');
 
 // Load the values from the values script
-const values = remote.require('./backend/values').get();
+const values = remote.require(path.join(__dirname, '../backend/values')).get();
 
 // Read the tenets file
-let tdata = fs.readFileSync('./backend/databases/tenets.json');
+let tdata = fs.readFileSync(path.join(__dirname, '../backend/databases/tenets.json'));
 // Parse the JSON data
 let tenets = JSON.parse(tdata);
 
 // Read the products file
-let pdata = fs.readFileSync('./backend/databases/products.json');
+let pdata = fs.readFileSync(path.join(__dirname, '../backend/databases/products.json'));
 // Parse the JSON data
 let products = JSON.parse(pdata);
 
@@ -87,7 +89,7 @@ for (let i = 0; i < values["products"].length; i++) {
 }
 
 // Read the other file
-let odata = fs.readFileSync('./backend/databases/other.json');
+let odata = fs.readFileSync(path.join(__dirname, '../backend/databases/other.json'));
 // Parse the JSON data
 let other = JSON.parse(odata);
 
@@ -124,7 +126,7 @@ let data = {
 }
 
 // Load the word script
-const word = remote.require('./backend/word');
+const word = remote.require(path.join(__dirname, '../backend/word'));
 
 // Generate the word document
 let link = word.generate(values["invoice_type"], data);

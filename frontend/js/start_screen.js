@@ -3,8 +3,10 @@ const {
   remote
 } = require('electron');
 
+const path = require('path');
+
 // Load the values script
-const values = remote.require('./backend/values');
+const values = remote.require(path.join(__dirname, '../backend/values'));
 
 // Dictonary to convert month to Dutch string
 let months = {

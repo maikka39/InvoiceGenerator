@@ -1,3 +1,5 @@
+const path = require('path');
+
 // Import the 'fs' library
 const fs = require('fs');
 
@@ -78,7 +80,7 @@ module.exports = {
     let data = JSON.stringify(values, null, 2);
 
     // Write it to a file
-    fs.writeFile('./backend/values.json', data, (err) => {
+    fs.writeFile(path.join(__dirname, '../backend/values.json'), data, (err) => {
       // If there is an error, throw it
       if (err) throw err;
     });

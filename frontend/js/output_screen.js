@@ -3,8 +3,10 @@ const {
   remote
 } = require('electron');
 
+const path = require('path');
+
 // Get the values
-const values = remote.require('./backend/values').get();
+const values = remote.require(path.join(__dirname, '../backend/values')).get();
 
 
 // Set the date variable

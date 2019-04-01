@@ -6,14 +6,16 @@ const {
   remote
 } = require('electron');
 
+const path = require('path');
+
 // Import the file library
 const fs = remote.require('fs');
 
 // Load the values script
-const values = remote.require('./backend/values');
+const values = remote.require(path.join(__dirname, '../backend/values'));
 
 // Read the prologue file
-fs.readFile('./backend/databases/prologue.json', (err, data) => {
+fs.readFile(path.join(__dirname, '../backend/databases/prologue.json'), (err, data) => {
   // If there is an error, throw it
   if (err) throw err;
   // Parse the json file
