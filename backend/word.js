@@ -7,13 +7,41 @@ const Docxtemplater = require('docxtemplater');
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * Save data to a file.
+ * @param {string} relativeFilePath - The relative path of the file.
+ * @param {Object} data - The object which should be saved.
+ */
+function writeFile(relativeFilePath, data) {
+  let fullpath = path.join(userDataPath, relativeFilePath);
+
+  // fs.writeFileSync(fullpath, JSON.stringify(data));
+  fs.writeFileSync(fullpath, data);
+}
+
+/**
+ * Read data from a file.
+ * @param {string} relativeFilePath - The relative path of the file.
+ */
+function readFileBinary(relativeFilePath) {
+  let fullpath = path.join(userDataPath, relativeFilePath);
+
+  // Read the file in a synchronous manner
+  let data = fs.readFileSync(fullpath, 'binary');
+  // Parse the data
+  // let parsedData = JSON.parse(data);
+
+  // return parsedData;
+  return data;
+}
+
 module.exports = {
-  generate: function (template_name, values) {
+  generate: function(template_name, values) {
     // Enter the path of the template
     let file_path = template_name + ".docx"
 
     // Load the template file as binary
-    var content = fs.readFileSync(path.resolve(__dirname, "../templates", file_path), 'binary');
+    var content = readFileBinary("templates/" + file_path);
 
     // Load the binary as a zip file
     var zip = new JSZip(content);
@@ -60,7 +88,7 @@ module.exports = {
     let output_file = "invoice_" + date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" + values["klant_bedrijf"].replace(/[^a-zA-Z0-9]/g, '_') + ".docx";
 
     // Write the file to the computer
-    fs.writeFileSync(path.resolve(__dirname, "../output", output_file), buf);
+    writeFile("output/" + output_file, buf);
 
     // Return the path to the outputed file
     return output_file;

@@ -3,6 +3,18 @@ const path = require('path');
 // Import the 'fs' library
 const fs = require('fs');
 
+/**
+ * Save data to a file.
+ * @param {string} relativeFilePath - The relative path of the file.
+ * @param {Object} data - The object which should be saved.
+ */
+function writeFile(relativeFilePath, data) {
+  let fullpath = path.join(userDataPath, relativeFilePath);
+
+  // fs.writeFileSync(fullpath, JSON.stringify(data));
+  fs.writeFileSync(fullpath, data);
+}
+
 // Declare the global values dictonary
 let values = {};
 
@@ -57,32 +69,29 @@ module.exports = {
    * @param {string} name - The name of the value which should be set.
    * @param {*} data - The data of the value which should be set.
    */
-  set: function (name, data) {
+  set: function(name, data) {
     // Add the provided data to the values
     values[name] = data;
   },
   /**
    * Log all the currently set values
    */
-  log: function () {
+  log: function() {
     // Log al current values
     console.log(values);
   },
   /**
    * Return all the currently set values
    */
-  get: function () {
+  get: function() {
     // Send back all the values
     return values;
   },
-  save: function () {
+  save: function() {
     // Convert values to JSON
     let data = JSON.stringify(values, null, 2);
 
     // Write it to a file
-    fs.writeFile(path.join(__dirname, '../backend/values.json'), data, (err) => {
-      // If there is an error, throw it
-      if (err) throw err;
-    });
+    writeFile('values.json', data)
   }
 };

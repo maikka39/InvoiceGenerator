@@ -1,38 +1,26 @@
 // Make all accordions work with the bulma library
 let accordions = bulmaAccordion.attach();
 
-// Connect to the backend
-const {
-  remote
-} = require('electron');
-
-const path = require('path');
-
-// Import the file library
-const fs = remote.require('fs');
-
 // Load the values script
 const values = remote.require(path.join(__dirname, '../backend/values'));
 
 // Read the prologue file
-fs.readFile(path.join(__dirname, '../backend/databases/prologue.json'), (err, data) => {
-  // If there is an error, throw it
-  if (err) throw err;
-  // Parse the json file
-  let prologue = JSON.parse(data);
+let data = readFile('databases/prologue.json');
 
-  // Get the element with all the data
-  let el = document.getElementById('data')
+// Parse the json file
+let prologue = JSON.parse(data);
 
-  // Loop through all the fields in de element
-  for (let i = 0; i < el.children.length; i++) {
-    // Get the title of this part
-    let title = el.children[i].id;
-    // Set the text of the field
-    el.children[i].children[1].children[0].children[0].value = prologue[title];
-  }
+// Get the element with all the data
+let el = document.getElementById('data')
 
-});
+// Loop through all the fields in de element
+for (let i = 0; i < el.children.length; i++) {
+  // Get the title of this part
+  let title = el.children[i].id;
+  // Set the text of the field
+  el.children[i].children[1].children[0].children[0].value = prologue[title];
+}
+
 
 /**
  * Save the prologue to the backend.

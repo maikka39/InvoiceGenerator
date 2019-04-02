@@ -1,46 +1,36 @@
-// Connect to the backend
-const {
-  remote
-} = require('electron');
-
-const path = require('path');
-
 // Load the values script
 const values = remote.require(path.join(__dirname, '../backend/values'));
-const fs = remote.require('fs');
 
 // Read the clients file
-fs.readFile(path.join(__dirname, '../backend/databases/clients.json'), (err, data) => {
-  // If there is an error, throw it
-  if (err) throw err;
-  // Parse the json file
-  let clients = JSON.parse(data);
+let cdata = readFile('databases/clients.json');
 
-  // Get the dropdown menu
-  let dropdown = document.getElementById('dropdown-menu4').children[0];
+// Parse the json file
+let clients = JSON.parse(cdata);
 
-  // For every client in the json file
-  for (let client in clients) {
-    // Check if the client actually exists
-    if (clients.hasOwnProperty(client)) {
-      // Create a clone of the standard option
-      let cln = dropdown.children[0].cloneNode(true);
-      // Set the text to the client name
-      cln.children[0].innerText = client;
-      // Append the editted clone the the parent
-      dropdown.appendChild(cln);
-    }
+// Get the dropdown menu
+let dropdown = document.getElementById('dropdown-menu4').children[0];
+
+// For every client in the json file
+for (let client in clients) {
+  // Check if the client actually exists
+  if (clients.hasOwnProperty(client)) {
+    // Create a clone of the standard option
+    let cln = dropdown.children[0].cloneNode(true);
+    // Set the text to the client name
+    cln.children[0].innerText = client;
+    // Append the editted clone the the parent
+    dropdown.appendChild(cln);
   }
+}
 
-  // Remove the initial option
-  dropdown.removeChild(dropdown.children[0]);
+// Remove the initial option
+dropdown.removeChild(dropdown.children[0]);
 
-});
 
 // Read the tenets file in a synchronous manner
-let data = fs.readFileSync(path.join(__dirname, '../backend/databases/tenets.json'));
+let tdata = readFile('databases/tenets.json');
 // Parse the data and get the dynamic part
-let tenets = JSON.parse(data)["Dynamisch"];
+let tenets = JSON.parse(tdata)["Dynamisch"];
 // Get the template tenet element
 let tenetel = document.getElementById('tenet');
 
@@ -73,45 +63,39 @@ tenetel.parentNode.removeChild(tenetel);
 
 
 // Read the clients file
-fs.readFile(path.join(__dirname, '../backend/databases/products.json'), (err, data) => {
-  // If there is an error, throw it
-  if (err) throw err;
-  // Parse the json file and grab the products
-  let products = JSON.parse(data);
+let pdata = readFile('databases/products.json');
 
-  // Get the popup_products menu
-  let popupProducts = document.getElementById('popup_products');
+// Parse the json file and grab the products
+let pproducts = JSON.parse(pdata);
 
-  // For every product in the JSON file
-  for (let category in products) {
-    if (products.hasOwnProperty(category)) {
-      // Copy the template category header
-      let ccln = popupProducts.children[0].cloneNode(true);
-      // Set the text of it to the name of the category
-      ccln.innerText = category;
-      // Add the category header to the popupProducts
-      popupProducts.appendChild(ccln);
-      for (let product in products[category]) {
-        if (products[category].hasOwnProperty(product)) {
-          // Create a clone of the standard product
-          let pcln = popupProducts.children[1].cloneNode(true);
-          // Set the text to the product name
-          pcln.children[0].children[0].innerText = product;
-          // Append the editted clone the the parent
-          popupProducts.appendChild(pcln);
-        }
+// Get the popup_products menu
+let popupProducts = document.getElementById('popup_products');
+
+// For every product in the JSON file
+for (let category in pproducts) {
+  if (pproducts.hasOwnProperty(category)) {
+    // Copy the template category header
+    let ccln = popupProducts.children[0].cloneNode(true);
+    // Set the text of it to the name of the category
+    ccln.innerText = category;
+    // Add the category header to the popupProducts
+    popupProducts.appendChild(ccln);
+    for (let product in pproducts[category]) {
+      if (pproducts[category].hasOwnProperty(product)) {
+        // Create a clone of the standard product
+        let pcln = popupProducts.children[1].cloneNode(true);
+        // Set the text to the product name
+        pcln.children[0].children[0].innerText = product;
+        // Append the editted clone the the parent
+        popupProducts.appendChild(pcln);
       }
     }
   }
+}
 
-  // Remove the initial option
-  popupProducts.removeChild(popupProducts.children[0]);
-  popupProducts.removeChild(popupProducts.children[0]);
-
-});
-
-
-
+// Remove the initial option
+popupProducts.removeChild(popupProducts.children[0]);
+popupProducts.removeChild(popupProducts.children[0]);
 
 
 
@@ -145,35 +129,32 @@ let accordions = bulmaAccordion.attach();
  */
 function selectSavedClient(name) {
   // Read the clients file
-  fs.readFile(path.join(__dirname, '../backend/databases/clients.json'), (err, data) => {
-    // If there is an error, throw it
-    if (err) throw err;
-    // Parse the json file
-    let clients = JSON.parse(data);
+  let data = readFile('databases/clients.json');
+  // Parse the json file
+  let clients = JSON.parse(data);
 
-    // If the name is in the client list
-    if (clients.hasOwnProperty(name)) {
-      // Get the client object
-      let client = clients[name]
-      // Get all the fields
-      let fields = document.getElementsByClassName('client_field');
+  // If the name is in the client list
+  if (clients.hasOwnProperty(name)) {
+    // Get the client object
+    let client = clients[name]
+    // Get all the fields
+    let fields = document.getElementsByClassName('client_field');
 
-      // For every field
-      for (let i = 0; i < fields.length; i++) {
-        // If the client has that property set
-        if (client.hasOwnProperty(fields[i].name)) {
-          // Set the correct value
-          fields[i].value = client[fields[i].name];
-        } else {
-          // Otherwise make it blank
-          fields[i].value = " ";
-        }
+    // For every field
+    for (let i = 0; i < fields.length; i++) {
+      // If the client has that property set
+      if (client.hasOwnProperty(fields[i].name)) {
+        // Set the correct value
+        fields[i].value = client[fields[i].name];
+      } else {
+        // Otherwise make it blank
+        fields[i].value = " ";
       }
-    } else {
-      // If not, tell the user something went wrong
-      alert("Sorry, er is iets mis gegaan.")
     }
-  });
+  } else {
+    // If not, tell the user something went wrong
+    alert("Sorry, er is iets mis gegaan.")
+  }
 }
 
 /**
@@ -214,24 +195,19 @@ function submitForm(el) {
   values.set("client", clientData);
 
   // Save as company
-  fs.readFile(path.join(__dirname, '../backend/databases/clients.json'), (err, data) => {
-    // If there is an error, throw it
-    if (err) throw err;
-    // Parse the read JSON data
-    let clients = JSON.parse(data);
+  let ccdata = readFile('databases/clients.json');
 
-    // Create a new entry, or modify an existing one, with the filled in data
-    clients[clientData.company] = clientData;
+  // Parse the read JSON data
+  let clients = JSON.parse(ccdata);
 
-    // Convert back to JSON
-    let newData = JSON.stringify(clients, null, 2);
+  // Create a new entry, or modify an existing one, with the filled in data
+  clients[clientData.company] = clientData;
 
-    // Write it to the file
-    fs.writeFile(path.join(__dirname, '../backend/databases/clients.json'), newData, (err) => {
-      // If there is an error, throw it
-      if (err) throw err;
-    });
-  });
+  // Convert back to JSON
+  let newData = JSON.stringify(clients, null, 2);
+
+  // Write it to the file
+  writeFile('databases/clients.json', newData);
 
   // Prevent the form from submitting
   return false;

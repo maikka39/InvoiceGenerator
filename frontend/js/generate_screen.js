@@ -1,25 +1,16 @@
-// Connect to the backend
-const {
-  remote
-} = require('electron');
-
-const path = require('path');
-
-// Import the 'fs' library
-const fs = remote.require('fs');
-
+// Get the progress bar element
 let progressBar = document.getElementById('progress_bar');
 
 // Load the values from the values script
 const values = remote.require(path.join(__dirname, '../backend/values')).get();
 
 // Read the tenets file
-let tdata = fs.readFileSync(path.join(__dirname, '../backend/databases/tenets.json'));
+let tdata = readFile('databases/tenets.json');
 // Parse the JSON data
 let tenets = JSON.parse(tdata);
 
 // Read the products file
-let pdata = fs.readFileSync(path.join(__dirname, '../backend/databases/products.json'));
+let pdata = readFile('databases/products.json');
 // Parse the JSON data
 let products = JSON.parse(pdata);
 
@@ -89,7 +80,7 @@ for (let i = 0; i < values["products"].length; i++) {
 }
 
 // Read the other file
-let odata = fs.readFileSync(path.join(__dirname, '../backend/databases/other.json'));
+let odata = readFile('databases/other.json');
 // Parse the JSON data
 let other = JSON.parse(odata);
 
